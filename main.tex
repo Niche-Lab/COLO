@@ -1,58 +1,60 @@
-\documentclass[journal,twoside,web]{ieeecolor}
-\usepackage{jsen}
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+\documentclass{article}
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}        % popular math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
 \usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{wrapfig}
-\usepackage[hidelinks]{hyperref}
-\usepackage{booktabs}
 \usepackage{float}
+\usepackage{natbib}
+\usepackage{doi}
+\usepackage{setspace} % double spacing
+\usepackage{lineno} % line numbering
+\graphicspath{ {.} }
 
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-\markboth{\journalname, VOL. XX, NO. XX, XXXX 2025}
-{Author \MakeLowercase{\textit{Das et al.}}: A Model Generalization Study}
-\definecolor{abstractbg}{rgb}{0.89804,0.94510,0.83137}
-\setlength{\fboxrule}{0pt}
-\setlength{\fboxsep}{0pt}
-
-\begin{document}
 
 \title{A Model Generalization Study in Localizing Indoor Cows with COw LOcalization (COLO) dataset}
 
-
 \author{
-    Mautushi Das\href{https://orcid.org/0009-0001-8932-142X}{\includegraphics[scale=0.06]{orcid.pdf}}, \IEEEmembership{the School of Animal Sciences, Virginia Tech},
-    Gonzalo Ferreira\href{https://orcid.org/0000-0002-8254-8090}{\includegraphics[scale=0.06]{orcid.pdf}}, \IEEEmembership{the School of Animal Sciences, Virginia Tech}, and 
-    C. P. James Chen\href{https://orcid.org/0000-0002-2018-0702}{\includegraphics[scale=0.06]{orcid.pdf}}, \IEEEmembership{the School of Animal Sciences, Virginia Tech}%
-    \thanks{This paper was submitted on [Insert Submission Date]. This work was supported in part by [Insert Sponsor/Grant Information, if applicable].}
-    \thanks{M. Das is with the School of Animal Sciences, Virginia Tech, Blacksburg, VA 24061 USA (e-mail: mautushid@vt.edu).}
-    \thanks{G. Ferreira is with the School of Animal Sciences, Virginia Tech, Blacksburg, VA 24061 USA (e-mail: gonf@vt.edu).}
-    \thanks{C. P. James Chen is with the School of Animal Sciences, Virginia Tech, Blacksburg, VA 24061 USA. He is the corresponding author (e-mail: niche@vt.edu).}
+    \href{https://orcid.org/0009-0001-8932-142X}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}Mautushi Das} \\
+	School of Animal Sciences\\
+	Virginia Tech\\
+	Blacksburg, VA 24061 \\
+	\texttt{mautushid@vt.edu} \\
+	%% examples of more authors
+	\And
+    \href{https://orcid.org/0000-0002-8254-8090}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}Gonzalo Ferreira} \\
+	School of Animal Sciences\\
+	Virginia Tech\\
+	Blacksburg, VA 24061 \\
+	\texttt{gonf@vt.edu} \\
+	\And
+	\href{https://orcid.org/0000-0002-2018-0702}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}C. P. James Chen} \thanks{Corresponding author: James Chen \texttt{<niche@vt.edu>}}\\
+	School of Animal Sciences\\
+	Virginia Tech\\
+	Blacksburg, VA 24061 \\
+	\texttt{niche@vt.edu}
 }
 
+\renewcommand{\shorttitle}{A Model Generalization Study with COLO Dataset}
 
-\IEEEtitleabstractindextext{%
-\fcolorbox{abstractbg}{abstractbg}{%
-\begin{minipage}{\textwidth}%
-%\begin{wrapfigure}[12]{r}{3in}%
-%\includegraphics[width=3in]{jsenga.png}%
-%\end{wrapfigure}%
+\linenumbers
 
-\begin{abstract}
-
-Precision livestock farming (PLF) increasingly relies on advanced object localization techniques to monitor livestock health and optimize resource management. This study evaluates the generalization capabilities of YOLOv8 and YOLOv9 models for cow detection in indoor free-stall barn settings, focusing on training data characteristics such as view angles, lighting, and model complexities. Using the newly released COws LOcalization (COLO) dataset, we examine three hypotheses: (1) Model generalization is equally influenced by changes in lighting conditions and camera angles; (2) Higher model complexity guarantees better generalization performance; (3) Fine-tuning with custom initial weights trained on relevant tasks enhances detection tasks. Our findings highlight considerable challenges in detecting cows from side views, emphasizing the importance of diverse camera angles in model development. Additionally, higher model complexity does not necessarily ensure better performance, as the optimal configuration depends on the specific task and dataset, necessitating careful model selection. Fine-tuning with custom initial weights offers advantages for complex models but provides limited benefits for simpler models. For simpler models, training with pre-trained weights proves more efficient, eliminating the need for prior relevant information that demands significant labor. Future research should prioritize adaptive methods and advanced data augmentation to enhance model generalization and robustness. This study delivers practical guidelines for PLF researchers to deploy computer vision models effectively, address generalization challenges, and leverages the COLO dataset containing 1254 images and 11818 cow instances to drive further research.
-
-\end{abstract}
-\begin{IEEEkeywords}
-Object detection \and Cows \and Model generalization \and Model selection
-\end{IEEEkeywords}
-
-\end{minipage}}}
+\begin{document}
 \maketitle
-\input{_0_abstract}
+
+\setstretch{2}
+
+\input{_0_abstract.tex}
+\newpage
 \input{_1_introduction.tex}
 \input{_2_approach.tex}
 \input{_3_results.tex}
@@ -65,8 +67,11 @@ This research was supported by the USDA Hatch Research Project funding VA-160196
 \newpage
 
 %Bibliography
-\bibliographystyle{unsrt}
+\bibliographystyle{plainnat}
 \bibliography{references}
+
+% just for references
+\newpage
 
 \input{_9_appendix.tex}
 
