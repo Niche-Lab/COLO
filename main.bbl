@@ -301,6 +301,11 @@ Colo: A large-scale dataset for conversational question answering over
 \newblock \url{https://huggingface.co/datasets/Niche-Squad/COLO}, 2023.
 \newblock Accessed: 2024-04-09.
 
+\bibitem{greif_dgreifring_2024}
+Dusty Greif.
+\newblock dgreif/ring, April 2024.
+\newblock original-date: 2018-10-12T22:53:01Z.
+
 \bibitem{ultralytics}
 Ultralytics.
 \newblock Ultralytics models documentation.
