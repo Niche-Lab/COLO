@@ -24,7 +24,7 @@ def main():
             "n_missed",
             "n_false",
             "size",
-            "model",
+            "model",A
             "iter",
         ]
     )
