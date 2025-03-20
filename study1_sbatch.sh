@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=study1
-#SBATCH -t 23:59:59
+#SBATCH -t 119:59:59
 #SBATCH --partition=dgx_normal_q
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64G
 #SBATCH --account=niche_squad
-#SBATCH --array=0-3  # Job array from 0 to 3
+#SBATCH --array=0-7 # Job array
 #SBATCH --output=logs/study1_%A_%a.out
 #SBATCH --error=logs/study1_%A_%a.err
 
