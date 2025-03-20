@@ -1,7 +1,11 @@
-# for t in {0..3}
-# do
-#     sh study1.sh $t &
-# done
+#
+# python study1.py\
+#     --iter 0\
+#     --thread 0\
+#     --config "0_all"\
+#     --n_sample 500\
+#     --model "yolo12x"
+#
 
 # models: ["rtdetr-x", "rtdetr-l", "yolo12x", "yolo11x", "yolo12m", "yolo11m", "yolo12n", "yolo11n"]
 # config: ["0_all", "a1_t2s", "a2_s2t", "b_light"]

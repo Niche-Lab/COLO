@@ -67,7 +67,7 @@ def main(args):
     
     # evaluation ------------------------
     metrics = eval_metrics(out)
-    str_profile = f"{config},{modelname},{n_params]},{n_sample},{thread},{iters},"
+    str_profile = f"{config},{modelname},{n_params},{n_sample},{thread},{iters},"
     str_metrics = ",".join([str(value) for value in metrics.values()])
 
     if os.path.exists(FILE_OUT):
