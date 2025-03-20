@@ -1,7 +1,7 @@
 import os
 import argparse
 import sys
-from ultralytics import YOLO
+from ultralytics import YOLO, RTDETR
 
 # local imports
 from path import PathFinder
@@ -11,13 +11,15 @@ sys.path.insert(0, PATHS["LIB_PYNICHE"].as_posix())
 from pyniche.data.yolo.API import YOLO_API
 
 LS_MODELS = [
-    "yolo11n", "yolov11m", "yolo11x", #  39.5, 51.5, 54.7
-    "yolo12n", "yolov12m", "yolo12x", # 40.6, 52.5, 55.2
-    "rtdetr-l", "rtdetr-x"] # 53.0 mAP, 54.8 mAP
+    "rtdetr-l", "rtdetr-x", #  38.2, 50.0, 52.5
+    "yolo12n", "yolo12m", "yolo12x", # 40.6, 52.5, 55.2
+    "yolo11n", "yolo11m", "yolo11x", #  39.5, 51.5, 54.7
+    ] # 53.0 mAP, 54.8 mAP
 LS_PARMS = [
-    2.6, 20.1, 56.9,
-    2.6, 20.2, 59.1,
-    45, 86]
+    45, 86, # rtdetr-l, rtdetr-x
+    2.6, 20.2, 59.1, # yolo12n, yolo12m, yolo12x
+    2.6, 20.1, 56.9, # yolo11n, yolo11m, yolo11x
+    ]
 LS_SIZES = [32, 64, 128, 256, 500]
 LS_DATA = ["0_all", "a1_t2s", "a2_s2t", "b_light"]
 
@@ -41,11 +43,13 @@ def main(args):
             for m, np in zip(LS_MODELS, LS_PARMS):
                 project = DIR_OUT / f"{d}_{m}_{n}"
                 
-                model = YOLO(m)
+                if "detr" in m:
+                    model = RTDETR(m)
+                else:
+                    model = YOLO(m)
                 model.train(data=path_yaml, 
-                            epochs=2,
+                            epochs=300,
                             patience=50,
-                            cos_lr=True,
                             project=project,
                             name=f"iter_{iters}",)
                 out = model.val(data=path_yaml,
