@@ -24,8 +24,8 @@ LS_DATA = ["0_all", "a1_t2s", "a2_s2t", "b_light"]
 
 def main(args):
     iters = args.iter
-    thread = args.thread
-    DIR_OUT = PATHS["SRC"] / "out" / f"thread_{thread}"
+    thread = str(args.thread)
+    DIR_OUT = PATHS["DIR_SRC"] / "out" / f"thread_{thread}"
     FILE_OUT = DIR_OUT / "results.csv"
 
     for d in LS_DATA:
