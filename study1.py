@@ -57,7 +57,7 @@ def main(args):
     project = DIR_OUT / f"{config}_{modelname}_{n_sample}"
     model.train(data=path_yaml, 
                 epochs=300,
-                patience=50,
+                patience=20,
                 batch=8,
                 project=project,
                 name=f"iter_{iters}",)
