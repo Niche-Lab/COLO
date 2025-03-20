@@ -43,7 +43,7 @@ def main(args):
     random.seed(seed)
     
     data = YOLO_API(DIR_DATA)
-    data.shuffle_train_val(split_src="train", n=n_sample, suffix=thread)
+    data.shuffle_train_val(split_src="train", n=int(n_sample), suffix=thread)
     data.make_test(split_src="test", suffix=thread)
     path_yaml = data.save_yaml(classes=["cow"], suffix=thread)
 
@@ -58,6 +58,7 @@ def main(args):
     model.train(data=path_yaml, 
                 epochs=300,
                 patience=50,
+                batch=8,
                 project=project,
                 name=f"iter_{iters}",)
     out = model.val(data=path_yaml,
