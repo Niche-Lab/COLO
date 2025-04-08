@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=study1
+#SBATCH --job-name=study2
 #SBATCH -t 143:59:59
 #SBATCH --partition=dgx_normal_q
 #SBATCH --nodes=1
@@ -9,25 +9,35 @@
 #SBATCH --mem=64G
 #SBATCH --account=niche_squad
 #SBATCH --array=0-4 # Job array
-#SBATCH --output=logs/study1_%A_%a.out
-#SBATCH --error=logs/study1_%A_%a.err
+#SBATCH --output=logs/study2_%A_%a.out
+#SBATCH --error=logs/study2_%A_%a.err
 
 # Load necessary modules (if required)
 source activate pyniche
 
+# Set iteration and thread variables
 THREAD=${SLURM_ARRAY_TASK_ID}
+
 # Define models, configs, and sample sizes
 MODELS=("yolo12x" "yolo11x" "rtdetr-x" "rtdetr-l" "yolo12m" "yolo11m" "yolo12n" "yolo11n")
-CONFIGS=("0_all" "a1_t2s" "a2_s2t" "b_light")
-# N_SAMPLES=(500 256 128 64 32)
-N_SAMPLES=(16 32 64 128 256 500)
+CONFIGS=("e_IMU" "e_VT")
+# N_SAMPLES=(200 128 64 32)
+N_SAMPLES=(16 32 64 128 200)
 
 # Run the script with different configurations
 for ITER in {1..100}; do
     for MODEL in "${MODELS[@]}"; do
         for CONFIG in "${CONFIGS[@]}"; do
             for N_SAMPLE in "${N_SAMPLES[@]}"; do
-                python study1.py \
+                python study2.py \
+                    --thread $THREAD \
+                    --iter $ITER \
+                    --model $MODEL \
+                    --config $CONFIG \
+                    --n_sample $N_SAMPLE \
+                    --is_pretrained 
+
+                python study2.py \
                     --thread $THREAD \
                     --iter $ITER \
                     --model $MODEL \

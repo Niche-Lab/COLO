@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 PATH_DOTENV = Path(__file__).parents[0] / ".env"
-PATHS = ["DIR_SRC", "DIR_DATA", "LIB_PYNICHE"]
+PATHS = ["DIR_SRC", "DIR_DATA", "LIB_PYNICHE", "DIR_TMP"]
 
 class PathFinder:
     
