@@ -67,7 +67,7 @@ def main(args):
 
     # training ------------------------
     is_largemodel = True if modelname in ["yolo12x", "yolo11x"] else False
-    batch = 16 if is_largemodel else 32 
+    batch = 16
     epochs, patience = get_config(batch, int(n_sample))
 
     model.train(data=path_yaml,
