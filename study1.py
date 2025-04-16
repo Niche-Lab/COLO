@@ -11,16 +11,16 @@ from evaluate import eval_metrics
 PATHS = PathFinder()
 sys.path.insert(0, PATHS["LIB_PYNICHE"].as_posix())
 from pyniche.data.yolo.API import YOLO_API
-
+ 
 DICT_PARAMS = dict({
-    "rtdetr-l": 45,
-    "rtdetr-x": 86,
-    "yolo12n": 2.6,
+    "rtdetr-l": 45, # 53.0
+    "rtdetr-x": 86, # 54.8
+    "yolo12n": 2.6, # 40.6
     "yolo12m": 20.2,
-    "yolo12x": 59.1,
-    "yolo11n": 2.6,
+    "yolo12x": 59.1, # 55.2
+    "yolo11n": 2.6, # 39.5
     "yolo11m": 20.1,
-    "yolo11x": 56.9,
+    "yolo11x": 56.9, # 54.7
 })
 
 def main(args):
@@ -30,13 +30,6 @@ def main(args):
     n_sample = args.n_sample
     modelname = args.model
     n_params = DICT_PARAMS[modelname]
-
-    # skip yolo11m, yolo12m
-    if modelname in ["yolo11m", "yolo12m"]:
-        return None
-    # skip n_sample = 16, 64, 256
-    if int(n_sample) in [16, 64, 256]:
-        return None
     
     DIR_DATA = PATHS["DIR_SRC"] / "data" / f"thread_{thread}" / config
     FILE_OUT = PATHS["DIR_SRC"] / "out" / "study1" / f"results_{thread}.csv"
@@ -58,8 +51,7 @@ def main(args):
         model = YOLO(modelname)
 
     # training ------------------------
-    is_largemodel = True if modelname in ["yolo12x", "yolo11x"] else False
-    batch = 16 if is_largemodel else 32 
+    batch = 16
     epochs, patience = get_config(batch, int(n_sample))
 
     model.train(data=path_yaml,
@@ -88,7 +80,6 @@ def main(args):
             file.write(str_profile + str_metrics + "\n")
 
     # remove the project folder
-    # if thread != "0":
     import shutil
     dir_model = DIR_PROJECT / f"iter_{iters}" / "weights"
     shutil.rmtree(dir_model)

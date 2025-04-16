@@ -32,12 +32,6 @@ def main(args):
     modelname = args.model
     is_pretrain = args.is_pretrained
     n_params = DICT_PARAMS[modelname]
-    # skip yolo11m, yolo12m
-    if modelname in ["yolo11m", "yolo12m"]:
-        return None
-    # skip n_sample = 32 and 128
-    if int(n_sample) in [32, 128]:
-        return None
     
     DIR_DATA = PATHS["DIR_SRC"] / "data" / f"thread_{thread}" / config
     PATH_MODEL = PATHS["DIR_SRC"] / "out" / "study2_finetune" / modelname / "weights" / "best.pt"
@@ -66,7 +60,6 @@ def main(args):
             model = YOLO(PATH_MODEL)
 
     # training ------------------------
-    is_largemodel = True if modelname in ["yolo12x", "yolo11x"] else False
     batch = 16
     epochs, patience = get_config(batch, int(n_sample))
 

@@ -80,6 +80,7 @@ PyPI-Recovery-Codes-poissonfish-2024-02-07T22_31_52.500609.txt
 !requirements.txt
 !modules/ring_capture/packages/**
 !ms/*.jpg
+!out/study*.csv
 
 # latex
 *.aux
