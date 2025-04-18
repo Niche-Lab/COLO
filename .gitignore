@@ -83,6 +83,7 @@ PyPI-Recovery-Codes-poissonfish-2024-02-07T22_31_52.500609.txt
 !out/study*.csv
 !out/train_time.csv
 !out/train_mem.csv
+!out/infer.csv
 
 # latex
 *.aux
