@@ -109,3 +109,31 @@ def get_med_time(tfile):
 
 if __name__ == "__main__":
     main()
+    
+    
+    
+# import pandas as pd
+
+# from export_results import add_family, add_params, add_size
+
+# data = pd.read_csv("mem.csv")
+# ls_models = ["yolo12x", "yolo11x", "rtdetr-x", "rtdetr-l", "yolo12n", "yolo11n"]
+# ls_size = [32, 128, 500]
+# data.loc[:, "model"] = [m for m in ls_models for _ in range(12)]
+# data.loc[:, "n"] = [s for _ in ls_models for i in range(4) for s in ls_size ]
+# data
+
+# import seaborn as sns
+# import matplotlib.pyplot as plt
+
+# # y = mem, x = n, color = model
+# sns.set(style="whitegrid")
+# plt.figure(figsize=(10, 6))
+# sns.lineplot(data=data, x="n", y="mem", hue="model", marker="o")
+
+
+# data = add_family(data)
+# data = add_size(data)
+# data = add_params(data)
+
+# data.to_csv("train_mem.csv", index=False)
