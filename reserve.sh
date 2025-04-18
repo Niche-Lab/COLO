@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=InTeRaCtIvE
 #SBATCH -t 143:59:59
-#SBATCH --partition=a100_normal_q
+#SBATCH --partition=l40s_normal_q
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=4
