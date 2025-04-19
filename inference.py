@@ -23,7 +23,7 @@ import tqdm
 # rtdetr-l = 1469.92 mB
 
 
-GPU = "4090"
+GPU = "A100"
 LS_MODEL = ["yolo11x.pt", "yolo12x.pt", "yolo11n.pt", "yolo12n.pt", "rtdetr-x.pt", "rtdetr-l.pt"]
 N_IMGS = 16
 paths = PathFinder()
