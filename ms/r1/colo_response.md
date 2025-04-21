@@ -35,12 +35,13 @@ Authors' response: Thank you for your suggestion. We have included a third-party
 
 - Hyperparameter table (Tab. 3) shows that the optimizer is automatically chosen and that much augmentation has been applied. This is functionality of the Ultralytics framework, not really belonging to the model itself. Since you have not controlled or systematically varied these additional functions, it remains unclear to what extent especially the augmentation influenced the robustness of the model against changed circumstances in the input images, which clearly has an effect on the investigated generalization capability of the models.
 
-Authors' response: Thank you for pointing out this concern. We acknowledge that this was not clearly stated and have now added a description of the additional pre-processing steps in the methods section for clarity. All the training is performed by the Adam optimizer.
+Authors' response: Thank you for pointing out this concern. We acknowledge that this was not clearly stated and have now added a description of the additional pre-processing steps in the methods section for clarity. Two augmentation examples were also added to the paragraph to illustrate the effect of the augmentation and generalization capability of the models.
 
 1) Presentation of the quantitative results:
 - The intuition of Figure 3 and the single points is unclear: By what means are these points representing different model configurations? What is meant with configuration? Learned weights? Please explain the intuition of this figure in more detail.
 
-Authors' response: Thank you for your comment. We intended to show the relationship between different metrics, as some metrics, such as mAP@0.5:0.95, might be difficult for readers to interpret in the non-technical community. We have redesigned the figure and focus on translating the metric mAP@0.5:0.95 to mAP@0.5, indicating that even with moderate performance, such as 0.6, in mAP@0.5:0.95, it still implies a good performance of 0.9 in mAP@0.5, which is more suitable for a case where counting is the only interest and location precision could be less of interest for farmers.
+Authors' response: Thank you for your comment and we are sorry for the confusion. We intended to show the relationship between different metrics, as some metrics, such as mAP@0.5:0.95, might be difficult for readers to interpret in the non-technical community. After a careful consideration, we felt it is not much relevant to the main message of the paper and could be confusing for readers. Hence, we have decided to remove this figure and focus on the mAP@0.5:0.95 metric.
+
 
 - I was confused by the results shown in Figure 5 where YOLOv8's performance often drops for the largest variants in most of the settings. Please elaborate more on this salient effect.
 
@@ -52,7 +53,7 @@ Authors' response: Thank you for your comment. This issue has been addressed as 
 
 - You state at some places that „performance differences … were insignificant...". However, neither statistical hypothesis testing was applied, nor were tables given showing descriptive statistics about the observed results. This substantially limits the expressiveness and reliability of the reported results. I'd like to strongly encourage the authors to carefully reconsider the stochastic effects induced in the experiments through utilizing automated functions of the Ultralytics library (e.g., random mixup augmentation). 
 
-Authors' response: Thank you for your comment. We have added the descriptive statistics to show the significance of the performance differences. We also have added brief descriptions of how the data augmentation would affect the estimated performance and use standard devication to show the stochastic effects in the experiments.
+Authors' response: Thank you for your comment. We have added the descriptive statistics to show the significance of the performance differences. We also have added brief descriptions of how the data augmentation would affect the estimated performance and use standard devication to show the stochastic effects in the experiments. To avoid ambiguity, we have removed the random mixup augmentation in the experiments. 
    
 - You state on page 8 that „each training sample size was repeated 50 times with different random seeds", but it is not clear what exactly was varied here (subsampling?). Furthermore, figure 2 is unclear. It states to show the cross-validation configurations, but it appears not to be a real cross-validation (which would have been favorable). Why are for instance in the Top2Side setting (upper middle) the sizes of the rectangles for train and test equally sized? Does each green test rectangle always stand for the fixed 100 images? The idea of the figure is good, but the details need to be elaborated further to increase comprehension of the reader.
 

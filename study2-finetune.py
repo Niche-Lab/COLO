@@ -38,7 +38,7 @@ def main(args):
     model.train(data=path_yaml,
                 epochs=300,
                 patience=20,
-                batch=8 if "12x" in modelname else 16, # for yolov12
+                batch=16, 
                 project=DIR_OUT,
                 name=".",)
 

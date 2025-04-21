@@ -1,5 +1,35 @@
 \begin{thebibliography}{10}
 
+\bibitem{ultralytics2024yolo11}
+Ultralytics.
+\newblock Yolov11: Performance metrics, 2024.
+\newblock Accessed: March 16, 2025.
+
+\bibitem{khanam2024yolov11}
+Rahima Khanam and Muhammad Hussain.
+\newblock Yolov11: An overview of the key architectural enhancements.
+\newblock {\em arXiv preprint arXiv:2410.17725}, 2024.
+
+\bibitem{ultralytics2024yolo12}
+Ultralytics.
+\newblock Yolov12: Performance metrics, 2024.
+\newblock Accessed: March 16, 2025.
+
+\bibitem{tian2025yolov12}
+Yunjie Tian, Qixiang Ye, and David Doermann.
+\newblock Yolov12: Attention-centric real-time object detectors.
+\newblock {\em arXiv preprint arXiv:2502.12524}, 2025.
+
+\bibitem{ultralytics2024detrt}
+Ultralytics.
+\newblock Detr-rt: Performance metrics, 2024.
+\newblock Accessed: March 16, 2025.
+
+\bibitem{carion2020end}
+Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.
+\newblock End-to-end object detection with transformers.
+\newblock In {\em European conference on computer vision}, pages 213--229. Springer, 2020.
+
 \bibitem{COLODataset2023}
 Colo: A large-scale dataset for conversational question answering over knowledge graphs.
 \newblock \url{https://huggingface.co/datasets/Niche-Squad/COLO}, 2023.
@@ -131,16 +161,6 @@ Thi~Thi Zin, Moe~Zet Pwint, Pann~Thinzar Seint, Shin Thant, Shuhei Misawa, Kosuk
 \newblock Roboflow: Organize, annotate, and improve machine learning datasets.
 \newblock \url{https://roboflow.com/}, 2023.
 
-\bibitem{ultralytics2024yolo11}
-Ultralytics.
-\newblock Yolov11: Performance metrics, 2024.
-\newblock Accessed: March 16, 2025.
-
-\bibitem{khanam2024yolov11}
-Rahima Khanam and Muhammad Hussain.
-\newblock Yolov11: An overview of the key architectural enhancements.
-\newblock {\em arXiv preprint arXiv:2410.17725}, 2024.
-
 \bibitem{dao2023flashattention}
 Tri Dao.
 \newblock Flashattention-2: Faster attention with better parallelism and work partitioning.
@@ -150,26 +170,6 @@ Tri Dao.
 Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
 \newblock Flashattention: Fast and memory-efficient exact attention with io-awareness.
 \newblock {\em Advances in neural information processing systems}, 35:16344--16359, 2022.
-
-\bibitem{ultralytics2024yolo12}
-Ultralytics.
-\newblock Yolov12: Performance metrics, 2024.
-\newblock Accessed: March 16, 2025.
-
-\bibitem{tian2025yolov12}
-Yunjie Tian, Qixiang Ye, and David Doermann.
-\newblock Yolov12: Attention-centric real-time object detectors.
-\newblock {\em arXiv preprint arXiv:2502.12524}, 2025.
-
-\bibitem{ultralytics2024detrt}
-Ultralytics.
-\newblock Detr-rt: Performance metrics, 2024.
-\newblock Accessed: March 16, 2025.
-
-\bibitem{carion2020end}
-Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.
-\newblock End-to-end object detection with transformers.
-\newblock In {\em European conference on computer vision}, pages 213--229. Springer, 2020.
 
 \bibitem{deng2009imagenet}
 Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li~Fei-Fei.
@@ -182,9 +182,9 @@ Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
 \newblock {\em Communications of the ACM}, 60(6):84--90, 2017.
 
 \bibitem{karen2014very}
-Simonyan Karen.
+Karen Simonyan and Andrew Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.
-\newblock {\em arXiv preprint arXiv: 1409.1556}, 2014.
+\newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
 
 \bibitem{szegedy2015going}
 Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, and Andrew Rabinovich.
@@ -217,6 +217,11 @@ Dataset Ninja.
 \newblock \url{ https://datasetninja.com/opencows2020 }, may 2024.
 \newblock visited on 2024-05-21.
 
+\bibitem{li_new_2024}
+Kuo Li, Daoerji Fan, Huijuan Wu, and Aruna Zhao.
+\newblock A new dataset for video-based cow behavior recognition.
+\newblock {\em Scientific Reports}, 14:18702, August 2024.
+
 \bibitem{greif_dgreifring_2024}
 Dusty Greif.
 \newblock dgreif/ring, April 2024.
@@ -227,38 +232,14 @@ Ultralytics.
 \newblock Ultralytics datasets documentation.
 \newblock \url{https://docs.ultralytics.com/datasets/detect/}, 2023.
 
-\bibitem{ultralytics}
-Ultralytics.
-\newblock Ultralytics models documentation.
-\newblock \url{https://docs.ultralytics.com/models/}.
-\newblock Accessed: 2024-05-21.
+\bibitem{ultralytics_yolo}
+Glenn Jocher, Jing Qiu, and Ayush Chaurasia.
+\newblock Ultralytics yolo, 2023.
+\newblock If you use this software, please cite it using the metadata from this file.
 
-\bibitem{v8yaml}
-Ultralytics v8 models.
-\newblock \url{https://github.com/ultralytics/ultralytics/blob/main/ultralytics/cfg/models/v8/yolov8.yaml}, 2023.
-
-\bibitem{v9yaml}
-Ultralytics v9 models.
-\newblock \url{https://github.com/ultralytics/ultralytics/tree/main/ultralytics/cfg/models/v9}, 2023.
-
-\bibitem{datasets}
-Quentin Lhoest, Albert Villanova~del Moral, Yacine Jernite, Abhishek Thakur, Patrick von Platen, Suraj Patil, Julien Chaumond, Mariama Drame, Julien Plu, Lewis Tunstall, Joe Davison, Marija {\v{C}}uklina, Simon Brandeis, Teven Le~Scao, Philipp Schmid, Sylvain Gugger, Cl{\'{e}}ment Delangue, Th{\'{e}}o Matussi{\`{e}}re, Lysandre Debut, Idan Ben-Ami, Olga Filippova, Martin d'Hoffschmidt, Sebastien G{\'{e}}rard, Brendan Lane, Leo Ansell, Lars Buitinck, Damien Esposito, Mathis Raison, Jacob Klein, Thibault Nguyen, Tomoki Mikami, Victor Sanh, Vishrav Chaudhary, Nicolas Patry, Wilson~Y. Chang, Julien Froment, Jonas Buhmann, Quentin Malartic, Victor Winschel, Charlie Watson, Rajarshi Pradeep, Gunjan Chhablani, Manuela Rohrbach, Maxim Jenny, John Bolton, Jason Phang, Theo Löw, Alexander Rush, and Thomas Wolf.
-\newblock Datasets: A community library for natural language processing.
-\newblock \url{https://github.com/huggingface/datasets}, 2021.
-
-\bibitem{ultralyticsYOLOv8}
-Ultralytics.
-\newblock {Y}{O}{L}{O}v8 --- docs.ultralytics.com.
-\newblock \url{https://docs.ultralytics.com/models/yolov8/#overview}, Januray 2023.
-
-\bibitem{wang2024yolov9}
-Chien-Yao Wang and Hong-Yuan~Mark Liao.
-\newblock {YOLOv9}: Learning what you want to learn using programmable gradient information.
-\newblock 2024.
-
-\bibitem{justus2018predicting}
-Daniel Justus, John Brennan, Stephen Bonner, and Andrew~Stephen McGough.
-\newblock Predicting the computational cost of deep learning models.
-\newblock In {\em 2018 IEEE international conference on big data (Big Data)}, pages 3873--3882. IEEE, 2018.
+\bibitem{wang_towards_2022}
+Wen Wang, Jing Zhang, Yang Cao, Yongliang Shen, and Dacheng Tao.
+\newblock Towards {Data}-{Efficient} {Detection} {Transformers}, August 2022.
+\newblock arXiv:2203.09507 [cs].
 
 \end{thebibliography}
