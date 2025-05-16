@@ -32,7 +32,7 @@ This study aimed to examined the first hypotheses that the model performance is 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{figure_2.jpg}
+    \includegraphics[width=1\textwidth]{figure_3.jpg}
     \caption{Experiment design for the model generalization study. (a) The experiments in the Study 1 contains four cross validation configurations to investigate the affect of different environmental conditions on model performance: Baseline, Top2Side, Side2Top, and Day2Night. (b) The two approaches to obtain initial weights for fine-tuning the model on external datasets. Noted that the size of each rectangular box is not proportional to the number of images in the dataset. It is to visually show where the images are sampled from.}
     \label{fig:experiment}
 \end{figure}
@@ -77,6 +77,13 @@ The model training was conducted using the Ultralytics framework \citep{ultralyt
     \end{tabular}
     \label{tab:augmentation}
 \end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{figure_2.jpg}
+    \caption{augme}
+    \label{fig:augmentation}
+\end{figure}
 
 Additionally, the training process was governed by predefined hyperparameters, including the number of epochs, batch size, optimizer, and learning rate. Rather than using the number of epochs as a fixed standard, this study adopted a constant number of update steps set to 8,192 (i.e., $2^{13}$). It ensured that all experiments, regardless of dataset size, underwent the same amount of model updates. For example, if the sample size is 500, the number of epochs is 8192 / (500 / 16) = 262.4 $\approx$ 262 epochs. This approach is especially important for experiments with smaller sample sizes, where a fixed number of epochs would otherwise result in significantly fewer updates. By standardizing on update steps, smaller datasets are trained over more epochs to reach the same number of updates, ensuring a fairer comparison across experiments. Early stopping was applied with a patience of one-quarter of the total number of epochs, and training was terminated if the model’s performance, measured by mAP@0.5:0.95, did not improve within this window. A detailed list of training hyperparameters is presented in \textbf{Table~\ref{tab:hyperparameters}}.
 
