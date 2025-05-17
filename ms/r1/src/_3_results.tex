@@ -30,9 +30,9 @@ The COLO dataset contains 1,254 images and 11,818 cow instances captured from an
 
 \subsection*{Study 1: The Changes in Camera View Angles Dramatically Affect Model Performance}
 
-Regardless of model architecture, the evaluated performance across the four configurations exhibits a consistent trend: changing the camera view from top-view to side-view results in a substantial performance drop. Using the Baseline configuration as a reference and evaluating with the $\text{mAP@{0.5:0.95}}$ metric on 500 training samples, the performance decreased by 51.6\%, 50.5\%, and 44.1\% for YOLOv11, YOLOv12, and RT-DETR, respectively. The second most significant drop was observed when switching the camera view from side-view to top-view, with performance declines of 31.4\%, 30.5\%, and 16.5\% for YOLOv11, YOLOv12, and RT-DETR, respectively. Finally, altering lighting conditions from day to night also led to a noticeable drop—approximately 10\%, though this effect was less severe compared to changes in camera view angle (\textbf{Figure~\ref{fig:study1}}).
+Regardless of model architecture, the evaluated performance across the four configurations exhibits a consistent trend: the \textit{Baseline} configuration consistently outperforms the other configurations, then \textit{Day2Night}, followed by \textit{Side2Top}, and finally \textit{Top2Side}. All the outperformance differences are statistically significant. It is found that changing the camera view from top-view to side-view results in a substantial performance drop. Using the \textit{Baseline} configuration as a reference and evaluating with the $\text{mAP@{0.5:0.95}}$ metric on 500 training samples, the performance decreased by 51.6\%, 50.5\%, and 44.1\% for YOLOv11, YOLOv12, and RT-DETR, respectively. The second most significant drop was observed when switching the camera view from side-view to top-view, with performance declines of 31.4\%, 30.5\%, and 16.5\% for YOLOv11, YOLOv12, and RT-DETR, respectively. Finally, altering lighting conditions from day to night also led to a noticeable drop—approximately 10\%, though this effect was less severe compared to changes in camera view angle (\textbf{Figure~\ref{fig:study1}}).
 
-Another noteworthy observation is that the trend of improved performance with increasing training sample size is not consistent across all model architectures. For instance, in the Day2Night configuration, both YOLOv11 and YOLOv12 showed smaller performance gains when increasing the training set from 128 to 500 samples compared to the gain from 32 to 128 samples. This suggests diminishing returns—or a saturation effect—on performance with larger training sizes. In contrast, the RT-DETR model demonstrated greater marginal improvements from 128 to 500 samples across the Day2Night, Side2Top, and Top2Side configurations than from 32 to 128 samples. Although this observation is based on limited data and context, it suggests that RT-DETR is more data-hungry than YOLOv11 and YOLOv12. This aligns with the findings of \cite{wang_towards_2022}, which report that DETR-based models generally require more data than CNN-based models like YOLO.
+Another noteworthy observation is that the trend of improved performance with increasing training sample size is not consistent across all model architectures. For instance, in the \textit{Day2Night} configuration, both YOLOv11 and YOLOv12 showed smaller performance gains when increasing the training set from 128 to 500 samples compared to the gain from 32 to 128 samples. This suggests diminishing returns—or a saturation effect—on performance with larger training sizes. In contrast, the RT-DETR model demonstrated greater marginal improvements from 128 to 500 samples across the \textit{Day2Night}, \textit{Side2Top}, and \textit{Top2Side} configurations than from 32 to 128 samples. Although this observation is based on limited data and context, it suggests that RT-DETR is more data-hungry than YOLOv11 and YOLOv12. This aligns with the findings of \cite{wang_towards_2022}, which report that DETR-based models generally require more data than CNN-based models like YOLO.
 
 \begin{figure}[h]
     \centering
@@ -42,54 +42,54 @@ Another noteworthy observation is that the trend of improved performance with in
     \label{fig:study1}
 \end{figure}
 
-Despite the various challenges in adapting models from day to night conditions, the `Day2Night' configuration consistently maintains higher $\text{mAP@{0.5:0.95}}$, closely mirroring the `Baseline' configuration across all training sample sizes and model architectures. This suggests that changes in lighting have less impact on the model's ability to detect objects compared to changes in viewpoint. This robustness to lighting could be attributed to the inclusion of diverse lighting conditions in the training phase. Specifically, model performance benefited from pixel-wise augmentation techniques such as adjustments to hue, saturation, and value (HSV). These augmentations introduced a variety of color variations to the images, enhancing the model's ability to generalize across different visual conditions. Moreover, these YOLO models benefit from pre-training on the COCO dataset, which is characterized by a wide array of images with varied lighting, aiding their adaptability to shifts in light.
+Despite the various challenges in adapting models from day to night conditions, the \textit{Day2Night} configuration consistently maintains higher $\text{mAP@{0.5:0.95}}$, closely mirroring the \textit{Baseline} configuration across all training sample sizes and model architectures. This suggests that changes in lighting have less impact on the model's ability to detect objects compared to changes in viewpoint. This robustness to lighting could be attributed to the inclusion of diverse lighting conditions in the training phase. Specifically, model performance benefited from pixel-wise augmentation techniques such as adjustments to hue, saturation, and value (HSV). These augmentations introduced a variety of color variations to the images, enhancing the model's ability to generalize across different visual conditions. Moreover, these YOLO models benefit from pre-training on the COCO dataset, which is characterized by a wide array of images with varied lighting, aiding their adaptability to shifts in light.
 
-On the other hand, the models perform suboptimally in scenarios involving changes in viewpoint. Each new viewpoint introduces fundamentally different object features that are not replicated through standard data augmentation methods such as lighting or affine transformations. For example, when the camera is placed at a lower angle, cows are more frequently occluded by stalls and fences. These additional objects introduce variations that cannot be mitigated by augmentations in HSV space or image translation. Consequently, `Top2Side' performs the worst, as it is particularly challenging to identify cows from the side. In summary, camera view angle is crucial for model generalization, with side views being the most challenging.
+On the other hand, the models perform suboptimally in scenarios involving changes in viewpoint. Each new viewpoint introduces fundamentally different object features that are not replicated through standard data augmentation methods such as lighting or affine transformations. For example, when the camera is placed at a lower angle, cows are more frequently occluded by stalls and fences. These additional objects introduce variations that cannot be mitigated by augmentations in HSV space or image translation. Consequently, \textit{Top2Side} performs the worst, as it is particularly challenging to identify cows from the side. In summary, camera view angle is crucial for model generalization, with side views being the most challenging.
 
 % \renewcommand{\arraystretch}{0.85}
 \begin{table}[ht]
-    \caption{Summary of YOLOv11 results for all configurations}
+    \caption{Summary of YOLO11 results for all configurations between the two model size variants. The results are represented as mean $\pm$ standard deviation. The greater mean value for each pair of model size variants is highlighted in bold.}
     \centering
     {\footnotesize
     \begin{tabular}{llllllll}
         \toprule
-        \textbf{Sample Size} & \textbf{Configuration} & \textbf{Model Size} & \textbf{mAP@0.5:0.95} & \textbf{mAP@0.5} & \textbf{Precision} & \textbf{Recall} \\
+        \textbf{Sample Size} & \textbf{Configuration} & \textbf{Model Variant} & \textbf{mAP@0.5:0.95} & \textbf{mAP@0.5} & \textbf{Precision} & \textbf{Recall} \\
         \midrule
-        32  & Baseline  & Large (56.9M) & 0.408 $\pm$ 0.022 & 0.716 $\pm$ 0.025 & 0.807 $\pm$ 0.031 & 0.625 $\pm$ 0.032 \\
-            &           & Small (2.6M) & \textbf{0.444 $\pm$ 0.021} & \textbf{0.760 $\pm$ 0.017} & \textbf{0.822 $\pm$ 0.024} & \textbf{0.662 $\pm$ 0.023} \\
+        32  & Baseline  & YOLOv11x (56.9M) & 0.408 $\pm$ 0.022 & 0.716 $\pm$ 0.025 & 0.807 $\pm$ 0.031 & 0.625 $\pm$ 0.032 \\
+            &           & YOLO11n (2.6M) & \textbf{0.444 $\pm$ 0.021} & \textbf{0.760 $\pm$ 0.017} & \textbf{0.822 $\pm$ 0.024} & \textbf{0.662 $\pm$ 0.023} \\
         \cmidrule{2-7}
-            & Day2Night & Large (56.9M) & 0.355 $\pm$ 0.027 & 0.624 $\pm$ 0.037 & 0.796 $\pm$ 0.038 & 0.539 $\pm$ 0.046 \\
-            &           & Small (2.6M) & \textbf{0.390 $\pm$ 0.025} & \textbf{0.673 $\pm$ 0.023} & \textbf{0.805 $\pm$ 0.032} & \textbf{0.582 $\pm$ 0.029} \\
+            & Day2Night & YOLOv11x (56.9M) & 0.355 $\pm$ 0.027 & 0.624 $\pm$ 0.037 & 0.796 $\pm$ 0.038 & 0.539 $\pm$ 0.046 \\
+            &           & YOLO11n (2.6M) & \textbf{0.390 $\pm$ 0.025} & \textbf{0.673 $\pm$ 0.023} & \textbf{0.805 $\pm$ 0.032} & \textbf{0.582 $\pm$ 0.029} \\
         \cmidrule{2-7}
-            & Side2Top  & Large (56.9M) & 0.124 $\pm$ 0.024 & 0.292 $\pm$ 0.063 & 0.473 $\pm$ 0.062 & \textbf{0.287 $\pm$ 0.094} \\
-            &           & Small (2.6M) & \textbf{0.138 $\pm$ 0.034} & \textbf{0.301 $\pm$ 0.068} & \textbf{0.484 $\pm$ 0.082} & 0.283 $\pm$ 0.069 \\
+            & Side2Top  & YOLOv11x (56.9M) & 0.124 $\pm$ 0.024 & 0.292 $\pm$ 0.063 & 0.473 $\pm$ 0.062 & \textbf{0.287 $\pm$ 0.094} \\
+            &           & YOLO11n (2.6M) & \textbf{0.138 $\pm$ 0.034} & \textbf{0.301 $\pm$ 0.068} & \textbf{0.484 $\pm$ 0.082} & 0.283 $\pm$ 0.069 \\
         \cmidrule{2-7}
-            & Top2Side  & Large (56.9M) & 0.051 $\pm$ 0.017 & 0.121 $\pm$ 0.034 & \textbf{0.258 $\pm$ 0.084} & 0.126 $\pm$ 0.038 \\
-            &           & Small (2.6M) & \textbf{0.064 $\pm$ 0.018} & \textbf{0.147 $\pm$ 0.034} & 0.248 $\pm$ 0.100 & \textbf{0.131 $\pm$ 0.036} \\
+            & Top2Side  & YOLOv11x (56.9M) & 0.051 $\pm$ 0.017 & 0.121 $\pm$ 0.034 & \textbf{0.258 $\pm$ 0.084} & 0.126 $\pm$ 0.038 \\
+            &           & YOLO11n (2.6M) & \textbf{0.064 $\pm$ 0.018} & \textbf{0.147 $\pm$ 0.034} & 0.248 $\pm$ 0.100 & \textbf{0.131 $\pm$ 0.036} \\
         \midrule
-        128 & Baseline  & Large (56.9M) & \textbf{0.575 $\pm$ 0.014} & 0.868 $\pm$ 0.010 & \textbf{0.899 $\pm$ 0.018} & 0.771 $\pm$ 0.019 \\
-            &           & Small (2.6M) & 0.567 $\pm$ 0.014 & \textbf{0.875 $\pm$ 0.011} & 0.896 $\pm$ 0.015 & \textbf{0.788 $\pm$ 0.014} \\
+        128 & Baseline  & YOLOv11x (56.9M) & \textbf{0.575 $\pm$ 0.014} & 0.868 $\pm$ 0.010 & \textbf{0.899 $\pm$ 0.018} & 0.771 $\pm$ 0.019 \\
+            &           & YOLO11n (2.6M) & 0.567 $\pm$ 0.014 & \textbf{0.875 $\pm$ 0.011} & 0.896 $\pm$ 0.015 & \textbf{0.788 $\pm$ 0.014} \\
         \cmidrule{2-7}
-            & Day2Night & Large (56.9M) & 0.478 $\pm$ 0.015 & 0.738 $\pm$ 0.018 & 0.869 $\pm$ 0.021 & 0.638 $\pm$ 0.024 \\
-            &           & Small (2.6M) & \textbf{0.488 $\pm$ 0.017} & \textbf{0.772 $\pm$ 0.019} & \textbf{0.873 $\pm$ 0.020} & \textbf{0.687 $\pm$ 0.030} \\
+            & Day2Night & YOLOv11x (56.9M) & 0.478 $\pm$ 0.015 & 0.738 $\pm$ 0.018 & 0.869 $\pm$ 0.021 & 0.638 $\pm$ 0.024 \\
+            &           & YOLO11n (2.6M) & \textbf{0.488 $\pm$ 0.017} & \textbf{0.772 $\pm$ 0.019} & \textbf{0.873 $\pm$ 0.020} & \textbf{0.687 $\pm$ 0.030} \\
         \cmidrule{2-7}
-            & Side2Top  & Large (56.9M) & 0.210 $\pm$ 0.039 & 0.426 $\pm$ 0.064 & 0.607 $\pm$ 0.087 & 0.387 $\pm$ 0.055 \\
-            &           & Small (2.6M) & \textbf{0.245 $\pm$ 0.038} & \textbf{0.472 $\pm$ 0.063} & \textbf{0.651 $\pm$ 0.050} & \textbf{0.426 $\pm$ 0.056} \\
+            & Side2Top  & YOLOv11x (56.9M) & 0.210 $\pm$ 0.039 & 0.426 $\pm$ 0.064 & 0.607 $\pm$ 0.087 & 0.387 $\pm$ 0.055 \\
+            &           & YOLO11n (2.6M) & \textbf{0.245 $\pm$ 0.038} & \textbf{0.472 $\pm$ 0.063} & \textbf{0.651 $\pm$ 0.050} & \textbf{0.426 $\pm$ 0.056} \\
         \cmidrule{2-7}
-            & Top2Side  & Large (56.9M) & 0.093 $\pm$ 0.022 & 0.186 $\pm$ 0.034 & 0.393 $\pm$ 0.072 & 0.164 $\pm$ 0.027 \\
-            &           & Small (2.6M) & \textbf{0.103 $\pm$ 0.017} & \textbf{0.207 $\pm$ 0.028} & \textbf{0.431 $\pm$ 0.082} & \textbf{0.181 $\pm$ 0.028} \\
+            & Top2Side  & YOLOv11x (56.9M) & 0.093 $\pm$ 0.022 & 0.186 $\pm$ 0.034 & 0.393 $\pm$ 0.072 & 0.164 $\pm$ 0.027 \\
+            &           & YOLO11n (2.6M) & \textbf{0.103 $\pm$ 0.017} & \textbf{0.207 $\pm$ 0.028} & \textbf{0.431 $\pm$ 0.082} & \textbf{0.181 $\pm$ 0.028} \\
         \midrule
-        500 & Baseline  & Large (56.9M) & \textbf{0.636 $\pm$ 0.008} & \textbf{0.932 $\pm$ 0.005} & \textbf{0.919 $\pm$ 0.011} & \textbf{0.864 $\pm$ 0.011} \\
-            &           & Small (2.6M) & 0.620 $\pm$ 0.006 & 0.927 $\pm$ 0.005 & 0.910 $\pm$ 0.012 & 0.856 $\pm$ 0.012 \\
+        500 & Baseline  & YOLOv11x (56.9M) & \textbf{0.636 $\pm$ 0.008} & \textbf{0.932 $\pm$ 0.005} & \textbf{0.919 $\pm$ 0.011} & \textbf{0.864 $\pm$ 0.011} \\
+            &           & YOLO11n (2.6M) & 0.620 $\pm$ 0.006 & 0.927 $\pm$ 0.005 & 0.910 $\pm$ 0.012 & 0.856 $\pm$ 0.012 \\
         \cmidrule{2-7}
-            & Day2Night & Large (56.9M) & \textbf{0.533 $\pm$ 0.013} & 0.817 $\pm$ 0.018 & \textbf{0.880 $\pm$ 0.028} & 0.726 $\pm$ 0.026 \\
-            &           & Small (2.6M) & 0.524 $\pm$ 0.015 & \textbf{0.820 $\pm$ 0.018} & 0.867 $\pm$ 0.023 & \textbf{0.733 $\pm$ 0.023} \\
+            & Day2Night & YOLOv11x (56.9M) & \textbf{0.533 $\pm$ 0.013} & 0.817 $\pm$ 0.018 & \textbf{0.880 $\pm$ 0.028} & 0.726 $\pm$ 0.026 \\
+            &           & YOLO11n (2.6M) & 0.524 $\pm$ 0.015 & \textbf{0.820 $\pm$ 0.018} & 0.867 $\pm$ 0.023 & \textbf{0.733 $\pm$ 0.023} \\
         \cmidrule{2-7}
-            & Side2Top  & Large (56.9M) & 0.290 $\pm$ 0.042 & 0.541 $\pm$ 0.056 & 0.663 $\pm$ 0.068 & 0.480 $\pm$ 0.049 \\
-            &           & Small (2.6M) & \textbf{0.338 $\pm$ 0.030} & \textbf{0.612 $\pm$ 0.043} & \textbf{0.728 $\pm$ 0.048} & \textbf{0.547 $\pm$ 0.040} \\
+            & Side2Top  & YOLOv11x (56.9M) & 0.290 $\pm$ 0.042 & 0.541 $\pm$ 0.056 & 0.663 $\pm$ 0.068 & 0.480 $\pm$ 0.049 \\
+            &           & YOLO11n (2.6M) & \textbf{0.338 $\pm$ 0.030} & \textbf{0.612 $\pm$ 0.043} & \textbf{0.728 $\pm$ 0.048} & \textbf{0.547 $\pm$ 0.040} \\
         \cmidrule{2-7}
-            & Top2Side  & Large (56.9M) & 0.105 $\pm$ 0.014 & 0.192 $\pm$ 0.020 & 0.413 $\pm$ 0.051 & 0.193 $\pm$ 0.018 \\
-            &           & Small (2.6M) & \textbf{0.117 $\pm$ 0.015} & \textbf{0.222 $\pm$ 0.026} & \textbf{0.465 $\pm$ 0.069} & \textbf{0.210 $\pm$ 0.030} \\
+            & Top2Side  & YOLOv11x (56.9M) & 0.105 $\pm$ 0.014 & 0.192 $\pm$ 0.020 & 0.413 $\pm$ 0.051 & 0.193 $\pm$ 0.018 \\
+            &           & YOLO11n (2.6M) & \textbf{0.117 $\pm$ 0.015} & \textbf{0.222 $\pm$ 0.026} & \textbf{0.465 $\pm$ 0.069} & \textbf{0.210 $\pm$ 0.030} \\
         \bottomrule
     \end{tabular}
     }
@@ -105,7 +105,7 @@ On the other hand, the models perform suboptimally in scenarios involving change
 \label{fig:models}
 \end{figure}
 
-The study found that training configuration significantly influences the relationship between model complexity and performance. Challenging tasks, such as predicting images across different camera angles (e.g., Top2Side and Side2Top), revealed that smaller model variants can sometimes outperform their larger counterparts. Specifically, in four out of six comparisons across three model architectures and two camera-angle configurations, the smaller models achieved better performance. In simpler tasks, such as the Baseline configuration, performance differences were generally minimal, with the small RT-DETR variant showing a statistically significant advantage, and YOLOv11/YOLOv12 variants showing less than a 3\% difference in $\text{mAP@{0.5:0.95}}$.
+The study found that training configuration significantly influences the relationship between model complexity and performance. The subset results for YOLOv11 are summarized in \textbf{Table~\ref{tab:study1}}. The results for YOLOv12 and RT-DETR are similar and can be found in the supplementary material. Challenging tasks, such as predicting images across different camera angles (e.g., Top2Side and Side2Top), revealed that smaller model variants can sometimes outperform their larger counterparts. Specifically, in four out of six comparisons across three model architectures and two camera-angle configurations, the smaller models achieved better performance. In simpler tasks, such as the Baseline configuration, performance differences were generally minimal, with the small RT-DETR variant showing a statistically significant advantage, and YOLOv11/YOLOv12 variants showing less than a 3\% difference in $\text{mAP@{0.5:0.95}}$.
 
 These findings suggest that the relationship between model size and performance is not linear or universally consistent. Instead, it depends on task complexity and dataset characteristics. In more complex configurations, simpler models occasionally performed better, challenging the assumption that larger models are always superior.
 
@@ -117,11 +117,7 @@ These results underscore the value of deploying smaller models in targeted, homo
 
 \subsection*{Study 3: The Advantages of Custom Initial Weights are Limited When the Model is Simple}
 
-The benefits of transferring weights from a related task vary between the two evaluated datasets. On the more similar dataset, \textit{ext\_VT}, models initialized with transferred weights consistently outperformed those with pre-trained weights, with statistically significant differences except for the small YOLOv11 variant. This performance gap remained even as more data from the target environment was added. In contrast, for the more distinct \textit{ext\_IMU} dataset, where the barn setting differs considerably, the advantage of transferred weights was observed only when training data was limited (e.g., 16 images). When the sample size increased to 250, the performance difference between pre-trained and transferred weights disappeared across all model architectures.
-
-These results suggest that transferred weights offer greater benefits when the source and target domains are closely aligned. For more divergent domains, fine-tuning from general pre-trained weights may be equally or more efficient. Additionally, simpler models gain less from custom weights, indicating that using pre-trained weights is often sufficient, avoiding the labor-intensive process of creating task-specific initializations.
-
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{figure_6.jpg}
     \caption{
@@ -131,49 +127,53 @@ These results suggest that transferred weights offer greater benefits when the s
     \label{fig:study3}
 \end{figure}
 
+The benefits of transferring weights from a related task vary between the two evaluated datasets. On the more similar dataset, \textit{ext\_VT}, models initialized with transferred weights consistently outperformed those with pre-trained weights, with statistically significant differences except for the small YOLOv11 variant. This performance gap remained even as more data from the target environment was added. In contrast, for the more distinct \textit{ext\_IMU} dataset, where the barn setting differs considerably, the advantage of transferred weights was observed only when training data was limited (e.g., 16 images). When the sample size increased to 250, the performance difference between pre-trained and transferred weights disappeared across all model architectures.
 
-\begin{table}[ht]
-    \caption{Summary of YOLOv11 results for all configurations}
+These results suggest that transferred weights offer greater benefits when the source and target domains are closely aligned. For more divergent domains, fine-tuning from general pre-trained weights may be equally or more efficient. Additionally, simpler models gain less from custom weights, indicating that using pre-trained weights is often sufficient, avoiding the labor-intensive process of creating task-specific initializations.
+
+
+\begin{table}[H]
+    \caption{Summary of the performance of YOLOv11 with different initial weights on the \textit{ext\_IMU} and \textit{ext\_VT} datasets. The results are represented as mean $\pm$ standard deviation. For each pair of initial weights, the greater mean value is highlighted in bold. Abbreviations: M (million), Config. (Configuration), Init. Weights (Initial Weights), mAP (Mean Average Precision). Note: If mean values are equal, the third decimal place is used to determine the greater value.}
     \centering
     {\footnotesize
     \begin{tabular}{lllllllll}
         \toprule
         \textbf{Sample Size} & \textbf{Config.} & \textbf{Model Szie} & \textbf{Init. Weights} & \textbf{mAP@0.5:0.95} & \textbf{mAP@0.5} & \textbf{Precision} & \textbf{Recall} \\
         \midrule
-            16  & e\_IMU & Large (56.9M) & Transfered & \textbf{0.40 $\pm$ 0.03} & \textbf{0.72 $\pm$ 0.04} & \textbf{0.77 $\pm$ 0.03} & \textbf{0.62 $\pm$ 0.04} \\
+            16  & e\_IMU & YOLOv11x (56.9M) & Transfered & \textbf{0.40 $\pm$ 0.03} & \textbf{0.72 $\pm$ 0.04} & \textbf{0.77 $\pm$ 0.03} & \textbf{0.62 $\pm$ 0.04} \\
                 &        &               & Pre-trained & 0.33 $\pm$ 0.05 & 0.63 $\pm$ 0.08 & 0.67 $\pm$ 0.09 & 0.55 $\pm$ 0.05 \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & \textbf{0.37 $\pm$ 0.02} & \textbf{0.72 $\pm$ 0.03} & \textbf{0.77 $\pm$ 0.04} & \textbf{0.62 $\pm$ 0.03} \\
+                &        & YOLO11n (2.6M) & Transferred & \textbf{0.37 $\pm$ 0.02} & \textbf{0.72 $\pm$ 0.03} & \textbf{0.77 $\pm$ 0.04} & \textbf{0.62 $\pm$ 0.03} \\
                 &        &               & Pre-trained & 0.34 $\pm$ 0.03 & 0.68 $\pm$ 0.04 & 0.73 $\pm$ 0.05 & 0.59 $\pm$ 0.04 \\
             \cmidrule{2-8}
-                & e\_VT  & Large (56.9M) & Transferred & \textbf{0.50 $\pm$ 0.03} & \textbf{0.81 $\pm$ 0.03} & \textbf{0.83 $\pm$ 0.03} & \textbf{0.71 $\pm$ 0.04} \\
+                & e\_VT  & YOLOv11x (56.9M) & Transferred & \textbf{0.50 $\pm$ 0.03} & \textbf{0.81 $\pm$ 0.03} & \textbf{0.83 $\pm$ 0.03} & \textbf{0.71 $\pm$ 0.04} \\
                 &        &               & Pre-trained & 0.38 $\pm$ 0.03 & 0.68 $\pm$ 0.03 & 0.76 $\pm$ 0.05 & 0.58 $\pm$ 0.06 \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & \textbf{0.48 $\pm$ 0.02} & \textbf{0.82 $\pm$ 0.02} & \textbf{0.82 $\pm$ 0.04} & \textbf{0.72 $\pm$ 0.03} \\
+                &        & YOLOv11n (2.6M) & Transferred & \textbf{0.48 $\pm$ 0.02} & \textbf{0.82 $\pm$ 0.02} & \textbf{0.82 $\pm$ 0.04} & \textbf{0.72 $\pm$ 0.03} \\
                 &        &               & Pre-trained & 0.40 $\pm$ 0.03 & 0.73 $\pm$ 0.03 & 0.78 $\pm$ 0.04 & 0.64 $\pm$ 0.04 \\
             \midrule
-            64  & e\_IMU & Large (56.9M) & Transferred & \textbf{0.49 $\pm$ 0.01} & \textbf{0.81 $\pm$ 0.01} & \textbf{0.82 $\pm$ 0.02} & \textbf{0.71 $\pm$ 0.03} \\
+            64  & e\_IMU & YOLOv11x (56.9M) & Transferred & \textbf{0.49 $\pm$ 0.01} & \textbf{0.81 $\pm$ 0.01} & \textbf{0.82 $\pm$ 0.02} & \textbf{0.71 $\pm$ 0.03} \\
                 &        &               & Pre-trained & 0.48 $\pm$ 0.02 & 0.79 $\pm$ 0.01 & 0.81 $\pm$ 0.03 & 0.70 $\pm$ 0.03 \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & 0.44 $\pm$ 0.01 & \textbf{0.79 $\pm$ 0.01} & \textbf{0.84 $\pm$ 0.02} & \textbf{0.69 $\pm$ 0.02} \\
+                &        & YOLOv11n (2.6M) & Transferred & 0.44 $\pm$ 0.01 & \textbf{0.79 $\pm$ 0.01} & \textbf{0.84 $\pm$ 0.02} & \textbf{0.69 $\pm$ 0.02} \\
                 &        &               & Pre-trained & \textbf{0.44 $\pm$ 0.01} & 0.78 $\pm$ 0.01 & 0.83 $\pm$ 0.03 & 0.67 $\pm$ 0.03 \\
             \cmidrule{2-8}
-                & e\_VT  & Large (56.9M) & Transferred & \textbf{0.57 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.02} & \textbf{0.87 $\pm$ 0.02} & \textbf{0.80 $\pm$ 0.02} \\
+                & e\_VT  & YOLOv11x (56.9M) & Transferred & \textbf{0.57 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.02} & \textbf{0.87 $\pm$ 0.02} & \textbf{0.80 $\pm$ 0.02} \\
                 &        &               & Pre-trained & 0.53 $\pm$ 0.02 & 0.84 $\pm$ 0.01 & 0.86 $\pm$ 0.02 & 0.76 $\pm$ 0.02 \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & \textbf{0.56 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.01} & 0.87 $\pm$ 0.02 & \textbf{0.80 $\pm$ 0.02} \\
+                &        & YOLOv11n (2.6M) & Transferred & \textbf{0.56 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.01} & 0.87 $\pm$ 0.02 & \textbf{0.80 $\pm$ 0.02} \\
                 &        &               & Pre-trained & 0.53 $\pm$ 0.02 & 0.85 $\pm$ 0.01 & \textbf{0.87 $\pm$ 0.02} & 0.75 $\pm$ 0.02 \\
             \midrule
-            200 & e\_IMU & Large (56.9M) & Transferred & 0.53 $\pm$ 0.01 & 0.85 $\pm$ 0.01 & \textbf{0.85 $\pm$ 0.03} & 0.77 $\pm$ 0.02 \\
+            200 & e\_IMU & YOLOv11x (56.9M) & Transferred & 0.53 $\pm$ 0.01 & 0.85 $\pm$ 0.01 & \textbf{0.85 $\pm$ 0.03} & 0.77 $\pm$ 0.02 \\
                 &        &               & Pre-trained & \textbf{0.54 $\pm$ 0.01} & \textbf{0.86 $\pm$ 0.01} & 0.84 $\pm$ 0.02 & \textbf{0.78 $\pm$ 0.01} \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & \textbf{0.50 $\pm$ 0.01} & \textbf{0.85 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.02} & \textbf{0.76 $\pm$ 0.02} \\
+                &        & YOLOv11n (2.6M) & Transferred & \textbf{0.50 $\pm$ 0.01} & \textbf{0.85 $\pm$ 0.01} & \textbf{0.88 $\pm$ 0.02} & \textbf{0.76 $\pm$ 0.02} \\
                 &        &               & Pre-trained & 0.49 $\pm$ 0.01 & 0.84 $\pm$ 0.01 & 0.87 $\pm$ 0.02 & 0.74 $\pm$ 0.01 \\
             \cmidrule{2-8}
-                & e\_VT  & Large (56.9M) & Transferred & \textbf{0.63 $\pm$ 0.01} & \textbf{0.91 $\pm$ 0.01} & \textbf{0.89 $\pm$ 0.02} & \textbf{0.85 $\pm$ 0.01} \\
+                & e\_VT  & YOLOv11x (56.9M) & Transferred & \textbf{0.63 $\pm$ 0.01} & \textbf{0.91 $\pm$ 0.01} & \textbf{0.89 $\pm$ 0.02} & \textbf{0.85 $\pm$ 0.01} \\
                 &        &               & Pre-trained & 0.62 $\pm$ 0.01 & 0.90 $\pm$ 0.01 & 0.89 $\pm$ 0.02 & 0.84 $\pm$ 0.02 \\
             \cmidrule{3-8}
-                &        & Small (2.6M) & Transferred & 0.61 $\pm$ 0.01 & \textbf{0.91 $\pm$ 0.01} & \textbf{0.90 $\pm$ 0.02} & \textbf{0.84 $\pm$ 0.02} \\
+                &        & YOLOv11n (2.6M) & Transferred & 0.61 $\pm$ 0.01 & \textbf{0.91 $\pm$ 0.01} & \textbf{0.90 $\pm$ 0.02} & \textbf{0.84 $\pm$ 0.02} \\
                 &        &               & Pre-trained & \textbf{0.61 $\pm$ 0.01} & 0.90 $\pm$ 0.01 & 0.89 $\pm$ 0.02 & 0.83 $\pm$ 0.02 \\
         \bottomrule
     \end{tabular}
@@ -197,7 +197,7 @@ These results suggest that transferred weights offer greater benefits when the s
     {\footnotesize
     \begin{tabular}{l l r r r r}
         \toprule
-        \textbf{Model size} & 
+        \textbf{\makecell{Model size \\category}} & 
         \textbf{Model} & 
         \textbf{\makecell{Params.\\(M)}} &
         \textbf{\makecell{Time per step (sec.) \\ A100 (80 GB)}} &
@@ -205,13 +205,13 @@ These results suggest that transferred weights offer greater benefits when the s
         \textbf{\makecell{Peak memory \\ (GiB)}}
         \\
         \midrule
-        Small & yolo11n   & 2.6  & 0.97$\pm$0.03 & 0.62$\pm$0.01 & 5.92$\pm$1.08 \\
-              & yolo12n   & 2.6  & 1.17$\pm$0.06 & 0.82$\pm$0.01 & 7.67$\pm$1.21 \\
-              & rtdetr-l  & 45.0 & 3.56$\pm$0.09 & 3.26$\pm$0.10 & 24.46$\pm$2.46 \\
+        Small & YOLOv11n   & 2.6  & 0.97$\pm$0.03 & 0.62$\pm$0.01 & 5.92$\pm$1.08 \\
+              & YOLOv12n   & 2.6  & 1.17$\pm$0.06 & 0.82$\pm$0.01 & 7.67$\pm$1.21 \\
+              & RT-DETR-l  & 45.0 & 3.56$\pm$0.09 & 3.26$\pm$0.10 & 24.46$\pm$2.46 \\
         \midrule
-        Large & yolo11x   & 56.9 & 4.14$\pm$0.11 & 3.79$\pm$0.03 & 18.08$\pm$1.00 \\
-              & yolo12x   & 59.1 & 5.26$\pm$0.06 & 5.29$\pm$0.04 & 26.89$\pm$1.07 \\
-              & rtdetr-x  & 86.0 & 5.39$\pm$0.13 & 5.14$\pm$0.11 & 31.60$\pm$3.18 \\
+        Large & YOLOv11x   & 56.9 & 4.14$\pm$0.11 & 3.79$\pm$0.03 & 18.08$\pm$1.00 \\
+              & YOLOv12x   & 59.1 & 5.26$\pm$0.06 & 5.29$\pm$0.04 & 26.89$\pm$1.07 \\
+              & RT-DETR-x  & 86.0 & 5.39$\pm$0.13 & 5.14$\pm$0.11 & 31.60$\pm$3.18 \\
         \bottomrule
     \end{tabular}
     }
@@ -219,27 +219,28 @@ These results suggest that transferred weights offer greater benefits when the s
 \end{table}
 
 \begin{table}[ht]
-    \caption{Inference FPS and memory usage for each model (mean~$\pm$~std).}
+    \caption{Inference frame per second (FPS) and memory usage for each model (mean~$\pm$~std).}
     \centering
     {\footnotesize
     \begin{tabular}{l l r r r r r r}
         \toprule
-        \textbf{Model size} & \textbf{Model} & 
+        \textbf{\makecell{Model size \\category}} &
+        \textbf{Model} & 
         \textbf{\makecell{Params. \\(M)}} &
         \textbf{\makecell{FPS\\A100 (80 GB)}} & 
         \textbf{\makecell{FPS\\L40S (48 GB)}} &
         \textbf{\makecell{FPS\\4090 (24 GB)}} & 
         \textbf{\makecell{FPS\\3080Ti (12 GB)}} & 
-        \textbf{\makecell{Required \\ memory \\ (MiB)}}
+        \textbf{\makecell{Memory \\ usage \\ (MiB)}}
         \\
         \midrule
-        Small & yolo11n   & 2.6  & 1734.90$\pm$14.71 & 1297.60$\pm$2.25 & 2079.76$\pm$86.72 & 1030.26$\pm$67.80  & 650.00 \\
-              & yolo12n   & 2.6  & 1013.95$\pm$8.37  & 862.18$\pm$36.41 & 1293.46$\pm$46.96 & 670.14$\pm$45.49  & 648.75 \\
-              & rtdetr-l  & 45.0 & 210.14$\pm$0.43   & 168.98$\pm$0.06  & 206.96$\pm$1.62 & 116.14$\pm$0.13   & 1469.92 \\
+        Small & YOLOv11n   & 2.6  & 1734.90$\pm$14.71 & 1297.60$\pm$2.25 & 2079.76$\pm$86.72 & 1030.26$\pm$67.80  & 650.00 \\
+              & YOLOv12n   & 2.6  & 1013.95$\pm$8.37  & 862.18$\pm$36.41 & 1293.46$\pm$46.96 & 670.14$\pm$45.49  & 648.75 \\
+              & RT-DETR-l  & 45.0 & 210.14$\pm$0.43   & 168.98$\pm$0.06  & 206.96$\pm$1.62 & 116.14$\pm$0.13   & 1469.92 \\
         \midrule
-        Large & yolo11x   & 56.9 & 222.12$\pm$33.46 & 129.08$\pm$5.66 & 149.92$\pm$11.13 & 88.38$\pm$0.31  &  3125.37 \\
-              & yolo12x   & 59.1 & 120.91$\pm$6.97 & 81.30$\pm$0.53   & 101.50$\pm$1.23 & 60.48$\pm$0.54  &  3133.62 \\
-              & rtdetr-x  & 86.0 & 136.31$\pm$17.64 & 111.68$\pm$0.44 & 132.64$\pm$0.53 & 70.38$\pm$0.40  &  1948.73 \\
+        Large & YOLOv11x   & 56.9 & 222.12$\pm$33.46 & 129.08$\pm$5.66 & 149.92$\pm$11.13 & 88.38$\pm$0.31  &  3125.37 \\
+              & YOLOv12x   & 59.1 & 120.91$\pm$6.97 & 81.30$\pm$0.53   & 101.50$\pm$1.23 & 60.48$\pm$0.54  &  3133.62 \\
+              & RT-DETR-x  & 86.0 & 136.31$\pm$17.64 & 111.68$\pm$0.44 & 132.64$\pm$0.53 & 70.38$\pm$0.40  &  1948.73 \\
         \bottomrule
     \end{tabular}
     }
@@ -260,7 +261,7 @@ This evaluation underscores the trade-offs between model complexity and computat
 \begin{figure}[h]
     \centering
     \includegraphics[width=.8\textwidth]{figure_8.jpg}
-    \caption{ .}
+    \caption{Pair-wise scatter plots illustrating the relationships among the four metrics used in this study. The metrics include mAP@0.5:0.95, mAP@0.5, precision, and recall. The diagonal panels show the distribution of each individual metric, while the off-diagonal panels display the correlation between each pair of metrics. In the scatter plots, each data point represents a single model evaluation iteration for a specific model size variant and data configuration. Different data configurations are distinguished by color}
     \label{fig:metric_interpretation}
 \end{figure}
 
