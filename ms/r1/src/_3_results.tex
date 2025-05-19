@@ -1,6 +1,6 @@
 \section{Results and Discussion}
 
-\subsection*{Public Dataset: COLO}
+\subsection*{Public dataset: COLO}
 
 The COLO dataset contains 1,254 images and 11,818 cow instances captured from an indoor farm environment. The dataset is organized in YOLO and COCO formats and published on the online platforms GitHub \href{https://github.com/Niche-Squad/COLO/}{(https://github.com/Niche-Squad/COLO/)} and Huggingface \href{https://huggingface.co/datasets/Niche-Squad/COLO}{(https://huggingface.co/datasets/Niche-Squad/COLO)}. The dataset consists of six configurations (\textbf{Table~\ref{tab:colo_config}}):
 \textit{0\_all}, \textit{1\_top}, \textit{2\_side}, \textit{a1\_t2s}, \textit{a2\_s2t}, \textit{b\_light}, \textit{ext\_VT}, and \textit{ext\_IMU}. The \textit{0\_all} configuration serves as the baseline for this study, featuring non-overlapping training and testing images collected from both the Top-View Camera and Side-View Camera. The \textit{1\_top}, \textit{2\_side}, and \textit{ext\_VT} configurations contain images from their respective cameras. The \textit{a1\_t2s}, \textit{a2\_s2t}, and \textit{b\_light} configurations include training/testing splits for the Top2Side, Side2Top, and Day2Night scenarios, respectively. The \textit{ext\_VT} and \textit{ext\_IMU} configuration is used to evaluate the model's performance on unseen data. Both training and testing images in these configurations are collected from the same camera, but the images are different. The \textit{ext\_VT} configuration uses images from the Virginia Tech dataset, while the \textit{ext\_IMU} configuration uses images from the Inner Mongolia University dataset. 
@@ -28,11 +28,11 @@ The COLO dataset contains 1,254 images and 11,818 cow instances captured from an
 \end{table}
 
 
-\subsection*{Study 1: The Changes in Camera View Angles Dramatically Affect Model Performance}
+\subsection*{Study 1: the changes in camera view angles dramatically affect model performance}
 
 Regardless of model architecture, the evaluated performance across the four configurations exhibits a consistent trend: the \textit{Baseline} configuration consistently outperforms the other configurations, then \textit{Day2Night}, followed by \textit{Side2Top}, and finally \textit{Top2Side}. All the outperformance differences are statistically significant. It is found that changing the camera view from top-view to side-view results in a substantial performance drop. Using the \textit{Baseline} configuration as a reference and evaluating with the $\text{mAP@{0.5:0.95}}$ metric on 500 training samples, the performance decreased by 51.6\%, 50.5\%, and 44.1\% for YOLOv11, YOLOv12, and RT-DETR, respectively. The second most significant drop was observed when switching the camera view from side-view to top-view, with performance declines of 31.4\%, 30.5\%, and 16.5\% for YOLOv11, YOLOv12, and RT-DETR, respectively. Finally, altering lighting conditions from day to night also led to a noticeable drop—approximately 10\%, though this effect was less severe compared to changes in camera view angle (\textbf{Figure~\ref{fig:study1}}).
 
-Another noteworthy observation is that the trend of improved performance with increasing training sample size is not consistent across all model architectures. For instance, in the \textit{Day2Night} configuration, both YOLOv11 and YOLOv12 showed smaller performance gains when increasing the training set from 128 to 500 samples compared to the gain from 32 to 128 samples. This suggests diminishing returns—or a saturation effect—on performance with larger training sizes. In contrast, the RT-DETR model demonstrated greater marginal improvements from 128 to 500 samples across the \textit{Day2Night}, \textit{Side2Top}, and \textit{Top2Side} configurations than from 32 to 128 samples. Although this observation is based on limited data and context, it suggests that RT-DETR is more data-hungry than YOLOv11 and YOLOv12. This aligns with the findings of \cite{wang_towards_2022}, which report that DETR-based models generally require more data than CNN-based models like YOLO.
+Another noteworthy observation is that the trend of improved performance with increasing training sample size is not consistent across all model architectures. For instance, in the \textit{Day2Night} configuration, both YOLOv11 and YOLOv12 showed smaller performance gains when increasing the training set from 128 to 500 samples compared to the gain from 32 to 128 samples. This suggests diminishing returns and saturated performance gains with larger training sizes.In contrast, the RT-DETR model demonstrated greater marginal improvements from 128 to 500 samples across the \textit{Day2Night}, \textit{Side2Top}, and \textit{Top2Side} configurations than from 32 to 128 samples. Although this observation is based on limited data and context, it suggests that RT-DETR is more data-hungry than YOLOv11 and YOLOv12. This aligns with the findings of \cite{wang_towards_2022}, which report that DETR-based models generally require more data than CNN-based models like YOLO.
 
 \begin{figure}[h]
     \centering
@@ -42,7 +42,7 @@ Another noteworthy observation is that the trend of improved performance with in
     \label{fig:study1}
 \end{figure}
 
-Despite the various challenges in adapting models from day to night conditions, the \textit{Day2Night} configuration consistently maintains higher $\text{mAP@{0.5:0.95}}$, closely mirroring the \textit{Baseline} configuration across all training sample sizes and model architectures. This suggests that changes in lighting have less impact on the model's ability to detect objects compared to changes in viewpoint. This robustness to lighting could be attributed to the inclusion of diverse lighting conditions in the training phase. Specifically, model performance benefited from pixel-wise augmentation techniques such as adjustments to hue, saturation, and value (HSV). These augmentations introduced a variety of color variations to the images, enhancing the model's ability to generalize across different visual conditions. Moreover, these YOLO models benefit from pre-training on the COCO dataset, which is characterized by a wide array of images with varied lighting, aiding their adaptability to shifts in light.
+Despite the various challenges in adapting models from day to night conditions, the \textit{Day2Night} configuration consistently maintains higher $\text{mAP@{0.5:0.95}}$, closely mirroring the \textit{Baseline} configuration across all training sample sizes and model architectures. This suggests that changes in lighting have less impact on the model's ability to detect objects compared to changes in viewpoint. This robustness to lighting could be attributed to the inclusion of diverse lighting conditions in the training phase. Specifically, model performance benefited from pixel-wise augmentation techniques such as adjustments to hue, saturation, and value (HSV). These augmentations introduced a variety of color variations to the images, enhancing the model's ability to generalize across different visual conditions. Moreover, these object detection models benefit from pre-training on the COCO dataset, which is characterized by a wide array of images with varied lighting, aiding their adaptability to shifts in light.
 
 On the other hand, the models perform suboptimally in scenarios involving changes in viewpoint. Each new viewpoint introduces fundamentally different object features that are not replicated through standard data augmentation methods such as lighting or affine transformations. For example, when the camera is placed at a lower angle, cows are more frequently occluded by stalls and fences. These additional objects introduce variations that cannot be mitigated by augmentations in HSV space or image translation. Consequently, \textit{Top2Side} performs the worst, as it is particularly challenging to identify cows from the side. In summary, camera view angle is crucial for model generalization, with side views being the most challenging.
 
@@ -96,7 +96,7 @@ On the other hand, the models perform suboptimally in scenarios involving change
     \label{tab:study1}
 \end{table}
 
-\subsection*{Study 2: A Higher Model Complexity Does Not Always Lead to Better Performance}
+\subsection*{Study 2: a higher model complexity does not always lead to better performance}
 
 \begin{figure}[h]
 \centering
@@ -105,17 +105,15 @@ On the other hand, the models perform suboptimally in scenarios involving change
 \label{fig:models}
 \end{figure}
 
-The study found that training configuration significantly influences the relationship between model complexity and performance. The subset results for YOLOv11 are summarized in \textbf{Table~\ref{tab:study1}}. The results for YOLOv12 and RT-DETR are similar and can be found in the supplementary material. Challenging tasks, such as predicting images across different camera angles (e.g., Top2Side and Side2Top), revealed that smaller model variants can sometimes outperform their larger counterparts. Specifically, in four out of six comparisons across three model architectures and two camera-angle configurations, the smaller models achieved better performance. In simpler tasks, such as the Baseline configuration, performance differences were generally minimal, with the small RT-DETR variant showing a statistically significant advantage, and YOLOv11/YOLOv12 variants showing less than a 3\% difference in $\text{mAP@{0.5:0.95}}$.
+The study found that training configuration significantly influences the relationship between model complexity and performance. The subset results for YOLOv11 are summarized in \textbf{Table~\ref{tab:study1}}. The results for YOLOv12 and RT-DETR can be found in the supplementary material. Challenging tasks, such as predicting images across different camera angles (e.g., \textit{Top2Side} and \textit{Side2Top}) as suggested by Study 1, revealed that smaller model variants can sometimes outperform their larger counterparts. Specifically, when training with 500 image samples, smaller models achieved better performance in four out of six comparisons across the three model architectures and two camera-angle configurations. Conversely, in simpler tasks like the \textit{Baseline} and \textit{Day2Night} configurations, the trend reversed, with larger models generally outperforming smaller ones, except for DETR models. The most significant outperformance by a larger model occurred in the \textit{Baseline} configuration, where YOLOv12x surpassed YOLOv12n by 1.7\%, and YOLOv11x outperformed YOLOv11n by 1.6\%. DETR models, however, consistently performed better with their smaller variants, notably with the small RT-DETR variant showing a 5.2\% increase in mAP@0.5:0.95.
 
-These findings suggest that the relationship between model size and performance is not linear or universally consistent. Instead, it depends on task complexity and dataset characteristics. In more complex configurations, simpler models occasionally performed better, challenging the assumption that larger models are always superior.
+These findings suggest that the relationship between model size and performance is not linear or universally consistent. Instead, it depends on task complexity and dataset characteristics. In more complex configurations, simpler models occasionally performed better, challenging the assumption that larger models are always superior. As illustrated in Figure~\ref{fig:models}, while all studied architectures (YOLOv11, YOLOv12, and RT-DETR) generally benefit from increased parameters when trained on large-scale datasets like COCO \cite{lin2014microsoft}, this pattern does not hold in the current setting. The COCO dataset includes 80 object classes and diverse standalone images, whereas this study used a domain-specific indoor farm dataset focusing on a single class: cows. Under such narrow and homogenous conditions, larger models may not offer proportional gains, and model generalization behavior differs.
 
-As illustrated in Figure~\ref{fig:models}, while all studied architectures (YOLOv11, YOLOv12, and RT-DETR) generally benefit from increased parameters when trained on large-scale datasets like COCO \cite{lin2014microsoft}, this pattern does not hold in the current setting. The COCO dataset includes 80 object classes and diverse standalone images, whereas this study used a domain-specific indoor farm dataset focusing on a single class: cows. Under such narrow and homogenous conditions, larger models may not offer proportional gains, and model generalization behavior differs.
-
-For example, the small YOLOv11n model (2.6M parameters) achieved 42.7\% $\text{mAP@{0.5:0.95}}$ with just 32 training samples—outperforming a much larger model (52.1M parameters) that achieved only 40.8\%. This advantage was especially pronounced in the Top2Side and Side2Top configurations, where YOLOv11n outperformed YOLOv11x by 1.3\% and 4.7\%, respectively, with 500 training samples.
+For example, the small YOLOv11n model (2.6M parameters) achieved 44.4\% $\text{mAP@{0.5:0.95}}$ with just 32 training samples, outperforming a much larger model (52.1M parameters) that achieved only 40.8\%. This advantage was especially pronounced in the \text{Top2Side} and \text{Side2Top} configurations, where YOLOv11n outperformed YOLOv11x by 1.2\% and 4.8\%, respectively, with 500 training samples.
 
 These results underscore the value of deploying smaller models in targeted, homogeneous tasks such as cow positioning, where they offer an optimal balance between computational efficiency and prediction accuracy. They also reinforce the broader point: model selection should be tailored to the specific dataset and task, rather than relying on model complexity as a proxy for better performance. In summary, higher model complexity does not inherently guarantee improved outcomes. Instead, careful consideration of the task context and dataset is essential in selecting the most effective model architecture.
 
-\subsection*{Study 3: The Advantages of Custom Initial Weights are Limited When the Model is Simple}
+\subsection*{Study 3: the advantages of custom initial weights are limited when the model is simple}
 
 \begin{figure}[H]
     \centering
@@ -127,13 +125,15 @@ These results underscore the value of deploying smaller models in targeted, homo
     \label{fig:study3}
 \end{figure}
 
-The benefits of transferring weights from a related task vary between the two evaluated datasets. On the more similar dataset, \textit{ext\_VT}, models initialized with transferred weights consistently outperformed those with pre-trained weights, with statistically significant differences except for the small YOLOv11 variant. This performance gap remained even as more data from the target environment was added. In contrast, for the more distinct \textit{ext\_IMU} dataset, where the barn setting differs considerably, the advantage of transferred weights was observed only when training data was limited (e.g., 16 images). When the sample size increased to 250, the performance difference between pre-trained and transferred weights disappeared across all model architectures.
+The benefits of transferring weights from a related task vary between the two evaluated datasets. On the more similar dataset, \textit{ext\_VT}, models initialized with transferred weights consistently outperformed those with pre-trained weights, with statistically significant differences except for the small YOLOv11 variant. Although the performance gap decreased as the training samples from the new source increased, the advantage of transferred weights remained when training with the full dataset of 200 images for most cases. Each model architecture exhibited the advantage by 2.62\% (RT-DETR-x), 1.76 \% (YOLOv12-x), and 0.98 \% (YOLOv11-x) in $\text{mAP@{0.5:0.95}}$ comparing the transferred weights with pre-trained weights. It is also found that the larger model variants tends to benefit more from transferred weights than the smaller ones. For instance, the advantage with the transferred weights was 2.62\% for the large RT-DETR model, while the small variant only gained 1.02\%. Similar trends were observed for YOLOv12 and YOLOv11, although the differences were smaller (1.03\% and 0.68\%, respectively).
+
+In contrast, for the more distinct \textit{ext\_IMU} dataset, where the barn setting differs considerably, the advantage of transferred weights was observed only when training data was limited (e.g., 16 images). When the sample size increased to 200, the performance difference between pre-trained and transferred weights disappeared across all model architectures.
 
 These results suggest that transferred weights offer greater benefits when the source and target domains are closely aligned. For more divergent domains, fine-tuning from general pre-trained weights may be equally or more efficient. Additionally, simpler models gain less from custom weights, indicating that using pre-trained weights is often sufficient, avoiding the labor-intensive process of creating task-specific initializations.
 
 
 \begin{table}[H]
-    \caption{Summary of the performance of YOLOv11 with different initial weights on the \textit{ext\_IMU} and \textit{ext\_VT} datasets. The results are represented as mean $\pm$ standard deviation. For each pair of initial weights, the greater mean value is highlighted in bold. Abbreviations: M (million), Config. (Configuration), Init. Weights (Initial Weights), mAP (Mean Average Precision). Note: If mean values are equal, the third decimal place is used to determine the greater value.}
+    \caption{Summary of the performance of YOLOv11 with different initial weights on the \textit{ext\_IMU} and \textit{ext\_VT} datasets. The results are represented as mean $\pm$ standard deviation. For each pair of initial weights, the greater mean value is highlighted in bold. Abbreviations: M (million), Config. (Configuration), Init. Weights (Initial Weights), mAP (Mean Average Precision). Note: If mean values are equal to two decimal places as shown in the table, the third decimal place is used to determine the greater value.}
     \centering
     {\footnotesize
     \begin{tabular}{lllllllll}
@@ -182,7 +182,7 @@ These results suggest that transferred weights offer greater benefits when the s
 \end{table}
 
 
-\subsection*{Computational Resource Requirements}
+\subsection*{Computational resource requirements}
 
 \begin{figure}[h]
     \centering
@@ -202,7 +202,7 @@ These results suggest that transferred weights offer greater benefits when the s
         \textbf{\makecell{Params.\\(M)}} &
         \textbf{\makecell{Time per step (sec.) \\ A100 (80 GB)}} &
         \textbf{\makecell{Time per step (sec.)\\ L40S (48 GB)}} &
-        \textbf{\makecell{Peak memory \\ (GiB)}}
+        \textbf{\makecell{Memory \\ usage \\ (GiB)}}
         \\
         \midrule
         Small & YOLOv11n   & 2.6  & 0.97$\pm$0.03 & 0.62$\pm$0.01 & 5.92$\pm$1.08 \\
@@ -256,7 +256,7 @@ GPU memory usage is another critical factor in determining the compatibility of 
 
 This evaluation underscores the trade-offs between model complexity and computational efficiency. Larger models, such as advanced YOLO and DETR-based variants, offer improved accuracy at the cost of increased training time and memory consumption. By understanding these trade-offs, practitioners can make informed decisions about model selection based on their resource availability and application-specific requirements. Ultimately, balancing performance with computational feasibility is key to the successful deployment of object detection models in real-world settings.
 
-\subsection*{Metric Intepretation}
+\subsection*{Metric intepretation}
 
 \begin{figure}[h]
     \centering
@@ -265,8 +265,10 @@ This evaluation underscores the trade-offs between model complexity and computat
     \label{fig:metric_interpretation}
 \end{figure}
 
+is the 5\% meaningful?
 
-\subsection*{Study Limitations}
+
+\subsection*{Study limitations}
 
 While this study provides multi-aspects insights into single-object detection generalization using cows as a case study, several limitations warrant consideration when interpreting the results. Firstly, the focus on a single object class, cows, inherently restricts the direct generalizability of the findings to other object categories or more complex, multi-class detection scenarios. Cows possess specific visual characteristics and appear in relatively predictable environments compared to the diversity encountered in broader object detection tasks. Consequently, the conclusion that camera angle changes pose a greater challenge than lighting variations might be specific to this context and may not hold true for objects with different textures, shapes, or typical backgrounds. Furthermore, while lighting and camera angles were investigated, other potentially significant environmental variables, such as partial occlusion (e.g., by fences, vegetation, or other animals), varying weather conditions, diverse background clutter, and significant intra-class variation (e.g., different breeds, ages, or postures of cows), were not the primary focus of the cross-validation strategies. The specific datasets used for training and validation, including their size and the diversity of conditions captured, could also influence the observed model performance and generalization capabilities.
 

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--entry type for "ultralytics_yolo" isn't style-file defined
+--line 817 of file references.bib
+You've used 48 entries,
+            1791 wiz_defined-function locations,
+            691 strings with 12489 characters,
+and the built_in function-call counts, 12338 in all, are:
+= -- 1046
+> -- 648
+< -- 15
++ -- 236
+- -- 188
+* -- 800
+:= -- 1894
+add.period$ -- 152
+call.type$ -- 48
+change.case$ -- 48
+chr.to.int$ -- 0
+cite$ -- 48
+duplicate$ -- 543
+empty$ -- 1187
+format.name$ -- 188
+if$ -- 2809
+int.to.chr$ -- 0
+int.to.str$ -- 48
+missing$ -- 36
+newline$ -- 245
+num.names$ -- 47
+pop$ -- 193
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 311
+stack$ -- 0
+substring$ -- 722
+swap$ -- 185
+text.length$ -- 15
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 111
+width$ -- 50
+write$ -- 524
+(There was 1 warning)
