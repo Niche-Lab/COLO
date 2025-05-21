@@ -987,3 +987,144 @@ DEEP LEARNING MODELS
   year    = {2022}
 }
 
+
+@incollection{paszke_pytorch_2019,
+  title     = {{PyTorch}: {An} {Imperative} {Style}, {High}-{Performance} {Deep} {Learning} {Library}},
+  url       = {http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf},
+  booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 32},
+  publisher = {Curran Associates, Inc.},
+  author    = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
+  year      = {2019},
+  pages     = {8024--8035}
+}
+
+@misc{kingma_adam_2017,
+  title      = {Adam: {A} {Method} for {Stochastic} {Optimization}},
+  shorttitle = {Adam},
+  url        = {http://arxiv.org/abs/1412.6980},
+  doi        = {10.48550/arXiv.1412.6980},
+  abstract   = {We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.},
+  urldate    = {2023-06-05},
+  publisher  = {arXiv},
+  author     = {Kingma, Diederik P. and Ba, Jimmy},
+  month      = jan,
+  year       = {2017},
+  note       = {arXiv:1412.6980 [cs]},
+  keywords   = {Computer Science - Machine Learning},
+  annote     = {Comment: Published as a conference paper at the 3rd International Conference for Learning Representations, San Diego, 2015},
+  file       = {arXiv Fulltext PDF:/Users/niche/Zotero/storage/W4VBJENY/Kingma and Ba - 2017 - Adam A Method for Stochastic Optimization.pdf:application/pdf;arXiv.org Snapshot:/Users/niche/Zotero/storage/X3PM67G6/1412.html:text/html}
+}
+
+@misc{shen_mixup_2024,
+  title     = {Mixup {Augmentation} with {Multiple} {Interpolations}},
+  url       = {http://arxiv.org/abs/2406.01417},
+  doi       = {10.48550/arXiv.2406.01417},
+  abstract  = {Mixup and its variants form a popular class of data augmentation techniques.Using a random sample pair, it generates a new sample by linear interpolation of the inputs and labels. However, generating only one single interpolation may limit its augmentation ability. In this paper, we propose a simple yet effective extension called multi-mix, which generates multiple interpolations from a sample pair. With an ordered sequence of generated samples, multi-mix can better guide the training process than standard mixup. Moreover, theoretically, this can also reduce the stochastic gradient variance. Extensive experiments on a number of synthetic and large-scale data sets demonstrate that multi-mix outperforms various mixup variants and non-mixup-based baselines in terms of generalization, robustness, and calibration.},
+  urldate   = {2025-05-16},
+  publisher = {arXiv},
+  author    = {Shen, Lifeng and Yu, Jincheng and Yang, Hansi and Kwok, James T.},
+  month     = jun,
+  year      = {2024},
+  note      = {arXiv:2406.01417 [cs]},
+  keywords  = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+  file      = {Full Text PDF:/Users/niche/Zotero/storage/ZR3BWWBZ/Shen et al. - 2024 - Mixup Augmentation with Multiple Interpolations.pdf:application/pdf;Snapshot:/Users/niche/Zotero/storage/GYRECKYM/2406.html:text/html}
+}
+
+@misc{yun_cutmix_2019,
+  title      = {{CutMix}: {Regularization} {Strategy} to {Train} {Strong} {Classifiers} with {Localizable} {Features}},
+  shorttitle = {{CutMix}},
+  url        = {http://arxiv.org/abs/1905.04899},
+  doi        = {10.48550/arXiv.1905.04899},
+  abstract   = {Regional dropout strategies have been proposed to enhance the performance of convolutional neural network classifiers. They have proved to be effective for guiding the model to attend on less discriminative parts of objects (e.g. leg as opposed to head of a person), thereby letting the network generalize better and have better object localization capabilities. On the other hand, current methods for regional dropout remove informative pixels on training images by overlaying a patch of either black pixels or random noise. Such removal is not desirable because it leads to information loss and inefficiency during training. We therefore propose the CutMix augmentation strategy: patches are cut and pasted among training images where the ground truth labels are also mixed proportionally to the area of the patches. By making efficient use of training pixels and retaining the regularization effect of regional dropout, CutMix consistently outperforms the state-of-the-art augmentation strategies on CIFAR and ImageNet classification tasks, as well as on the ImageNet weakly-supervised localization task. Moreover, unlike previous augmentation methods, our CutMix-trained ImageNet classifier, when used as a pretrained model, results in consistent performance gains in Pascal detection and MS-COCO image captioning benchmarks. We also show that CutMix improves the model robustness against input corruptions and its out-of-distribution detection performances. Source code and pretrained models are available at https://github.com/clovaai/CutMix-PyTorch .},
+  urldate    = {2025-05-16},
+  publisher  = {arXiv},
+  author     = {Yun, Sangdoo and Han, Dongyoon and Oh, Seong Joon and Chun, Sanghyuk and Choe, Junsuk and Yoo, Youngjoon},
+  month      = aug,
+  year       = {2019},
+  note       = {arXiv:1905.04899 [cs]},
+  keywords   = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+  annote     = {Comment: Accepted at ICCV 2019 (oral talk). 14 pages, 5 figures},
+  file       = {Full Text PDF:/Users/niche/Zotero/storage/6ZQGBPDE/Yun et al. - 2019 - CutMix Regularization Strategy to Train Strong Classifiers with Localizable Features.pdf:application/pdf;Snapshot:/Users/niche/Zotero/storage/AEC7RBWD/1905.html:text/html}
+}
+
+@misc{zhang_mixup_2018,
+  title      = {mixup: {Beyond} {Empirical} {Risk} {Minimization}},
+  shorttitle = {mixup},
+  url        = {http://arxiv.org/abs/1710.09412},
+  doi        = {10.48550/arXiv.1710.09412},
+  abstract   = {Large deep neural networks are powerful, but exhibit undesirable behaviors such as memorization and sensitivity to adversarial examples. In this work, we propose mixup, a simple learning principle to alleviate these issues. In essence, mixup trains a neural network on convex combinations of pairs of examples and their labels. By doing so, mixup regularizes the neural network to favor simple linear behavior in-between training examples. Our experiments on the ImageNet-2012, CIFAR-10, CIFAR-100, Google commands and UCI datasets show that mixup improves the generalization of state-of-the-art neural network architectures. We also find that mixup reduces the memorization of corrupt labels, increases the robustness to adversarial examples, and stabilizes the training of generative adversarial networks.},
+  urldate    = {2025-05-16},
+  publisher  = {arXiv},
+  author     = {Zhang, Hongyi and Cisse, Moustapha and Dauphin, Yann N. and Lopez-Paz, David},
+  month      = apr,
+  year       = {2018},
+  note       = {arXiv:1710.09412 [cs]},
+  keywords   = {Computer Science - Machine Learning, Statistics - Machine Learning},
+  annote     = {Comment: ICLR camera ready version. Changes vs V1: fix repo URL; add ablation studies; add mixup + dropout etc},
+  file       = {Full Text PDF:/Users/niche/Zotero/storage/WLRYEVU6/Zhang et al. - 2018 - mixup Beyond Empirical Risk Minimization.pdf:application/pdf;Snapshot:/Users/niche/Zotero/storage/F5GTP89N/1710.html:text/html}
+}
+
+@article{shapiro_analysis_1965,
+  title   = {An analysis of variance test for normality (complete samples)†},
+  volume  = {52},
+  issn    = {0006-3444},
+  url     = {https://doi.org/10.1093/biomet/52.3-4.591},
+  doi     = {10.1093/biomet/52.3-4.591},
+  number  = {3-4},
+  journal = {Biometrika},
+  author  = {SHAPIRO, S. S. and WILK, M. B.},
+  month   = dec,
+  year    = {1965},
+  note    = {\_eprint: https://academic.oup.com/biomet/article-pdf/52/3-4/591/962907/52-3-4-591.pdf},
+  pages   = {591--611}
+}
+
+@article{mann_test_1947,
+  title    = {On a {Test} of {Whether} one of {Two} {Random} {Variables} is {Stochastically} {Larger} than the {Other}},
+  volume   = {18},
+  issn     = {0003-4851, 2168-8990},
+  url      = {https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-18/issue-1/On-a-Test-of-Whether-one-of-Two-Random-Variables/10.1214/aoms/1177730491.full},
+  doi      = {10.1214/aoms/1177730491},
+  abstract = {Let \$x\$ and \$y\$ be two random variables with continuous cumulative distribution functions \$f\$ and \$g\$. A statistic \$U\$ depending on the relative ranks of the \$x\$'s and \$y\$'s is proposed for testing the hypothesis \$f = g\$. Wilcoxon proposed an equivalent test in the Biometrics Bulletin, December, 1945, but gave only a few points of the distribution of his statistic. Under the hypothesis \$f = g\$ the probability of obtaining a given \$U\$ in a sample of \$n x's\$ and \$m y's\$ is the solution of a certain recurrence relation involving \$n\$ and \$m\$. Using this recurrence relation tables have been computed giving the probability of \$U\$ for samples up to \$n = m = 8\$. At this point the distribution is almost normal. From the recurrence relation explicit expressions for the mean, variance, and fourth moment are obtained. The 2rth moment is shown to have a certain form which enabled us to prove that the limit distribution is normal if \$m, n\$ go to infinity in any arbitrary manner. The test is shown to be consistent with respect to the class of alternatives \$f(x) {\textgreater} g(x)\$ for every \$x\$.},
+  number   = {1},
+  urldate  = {2025-05-16},
+  journal  = {The Annals of Mathematical Statistics},
+  author   = {Mann, H. B. and Whitney, D. R.},
+  month    = mar,
+  year     = {1947},
+  note     = {Publisher: Institute of Mathematical Statistics},
+  pages    = {50--60},
+  file     = {Full Text PDF:/Users/niche/Zotero/storage/N5BARJGR/Mann and Whitney - 1947 - On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other.pdf:application/pdf}
+}
+
+@incollection{levene_robust_1960,
+  address   = {Palo Alto},
+  title     = {Robust {Tests} for {Equality} of {Variances}},
+  booktitle = {Contributions to {Probability} and {Statistics}: {Essays} in {Honor} of {Harold} {Hotelling}},
+  publisher = {Stanford University Press},
+  author    = {Levene, Howard},
+  year      = {1960},
+  pages     = {278--292}
+}
+
+@article{welch_generalization_1947,
+  title    = {The {Generalization} of `{Student}'s' {Problem} when {Several} {Different} {Population} {Variances} are {Involved}},
+  volume   = {34},
+  url      = {http://www.jstor.org/stable/2332510},
+  number   = {1/2},
+  journal  = {Biometrika},
+  author   = {Welch, B. L.},
+  month    = jan,
+  year     = {1947},
+  keywords = {statistics},
+  pages    = {28--35},
+  annote   = {(private-note)Paper for the correction to the DOFs in the t-test when the variances are unequal, as usedin R::stats. See also Satterthwaite (1946)}
+}
+
+@misc{martin_abadi_tensorflow_2015,
+  title  = {{TensorFlow}: {Large}-{Scale} {Machine} {Learning} on {Heterogeneous} {Systems}},
+  url    = {https://www.tensorflow.org/},
+  author = {{Martín Abadi} and {Ashish Agarwal} and {Paul Barham} and {Eugene Brevdo} and {Zhifeng Chen} and {Craig Citro} and {Greg S. Corrado} and {Andy Davis} and {Jeffrey Dean} and {Matthieu Devin} and {Sanjay Ghemawat} and {Ian Goodfellow} and {Andrew Harp} and {Geoffrey Irving} and {Michael Isard} and Jia, Yangqing and {Rafal Jozefowicz} and {Lukasz Kaiser} and {Manjunath Kudlur} and {Josh Levenberg} and {Dandelion Mané} and {Rajat Monga} and {Sherry Moore} and {Derek Murray} and {Chris Olah} and {Mike Schuster} and {Jonathon Shlens} and {Benoit Steiner} and {Ilya Sutskever} and {Kunal Talwar} and {Paul Tucker} and {Vincent Vanhoucke} and {Vijay Vasudevan} and {Fernanda Viégas} and {Oriol Vinyals} and {Pete Warden} and {Martin Wattenberg} and {Martin Wicke} and {Yuan Yu} and {Xiaoqiang Zheng}},
+  year   = {2015},
+  annote = {Software available from tensorflow.org}
+}

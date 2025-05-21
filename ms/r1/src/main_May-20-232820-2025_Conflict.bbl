@@ -279,81 +279,11 @@ Ultralytics.
 \newblock Ultralytics datasets documentation.
 \newblock \url{https://docs.ultralytics.com/datasets/detect/}, 2023.
 
-\bibitem{shapiro_analysis_1965}
-S.~S. SHAPIRO and M.~B. WILK.
-\newblock An analysis of variance test for normality (complete samples)†.
-\newblock {\em Biometrika}, 52(3-4):591--611, December 1965.
-\newblock \_eprint:
-  https://academic.oup.com/biomet/article-pdf/52/3-4/591/962907/52-3-4-591.pdf.
-
-\bibitem{levene_robust_1960}
-Howard Levene.
-\newblock Robust {Tests} for {Equality} of {Variances}.
-\newblock In {\em Contributions to {Probability} and {Statistics}: {Essays} in
-  {Honor} of {Harold} {Hotelling}}, pages 278--292. Stanford University Press,
-  Palo Alto, 1960.
-
-\bibitem{welch_generalization_1947}
-B.~L. Welch.
-\newblock The {Generalization} of `{Student}'s' {Problem} when {Several}
-  {Different} {Population} {Variances} are {Involved}.
-\newblock {\em Biometrika}, 34(1/2):28--35, January 1947.
-
-\bibitem{mann_test_1947}
-H.~B. Mann and D.~R. Whitney.
-\newblock On a {Test} of {Whether} one of {Two} {Random} {Variables} is
-  {Stochastically} {Larger} than the {Other}.
-\newblock {\em The Annals of Mathematical Statistics}, 18(1):50--60, March
-  1947.
-\newblock Publisher: Institute of Mathematical Statistics.
-
 \bibitem{ultralytics_yolo}
 Glenn Jocher, Jing Qiu, and Ayush Chaurasia.
 \newblock Ultralytics yolo, 2023.
 \newblock If you use this software, please cite it using the metadata from this
   file.
-
-\bibitem{yun_cutmix_2019}
-Sangdoo Yun, Dongyoon Han, Seong~Joon Oh, Sanghyuk Chun, Junsuk Choe, and
-  Youngjoon Yoo.
-\newblock {CutMix}: {Regularization} {Strategy} to {Train} {Strong}
-  {Classifiers} with {Localizable} {Features}, August 2019.
-\newblock arXiv:1905.04899 [cs].
-
-\bibitem{zhang_mixup_2018}
-Hongyi Zhang, Moustapha Cisse, Yann~N. Dauphin, and David Lopez-Paz.
-\newblock mixup: {Beyond} {Empirical} {Risk} {Minimization}, April 2018.
-\newblock arXiv:1710.09412 [cs].
-
-\bibitem{kingma_adam_2017}
-Diederik~P. Kingma and Jimmy Ba.
-\newblock Adam: {A} {Method} for {Stochastic} {Optimization}, January 2017.
-\newblock arXiv:1412.6980 [cs].
-
-\bibitem{martin_abadi_tensorflow_2015}
-{Martín Abadi}, {Ashish Agarwal}, {Paul Barham}, {Eugene Brevdo}, {Zhifeng
-  Chen}, {Craig Citro}, {Greg S. Corrado}, {Andy Davis}, {Jeffrey Dean},
-  {Matthieu Devin}, {Sanjay Ghemawat}, {Ian Goodfellow}, {Andrew Harp},
-  {Geoffrey Irving}, {Michael Isard}, Yangqing Jia, {Rafal Jozefowicz}, {Lukasz
-  Kaiser}, {Manjunath Kudlur}, {Josh Levenberg}, {Dandelion Mané}, {Rajat
-  Monga}, {Sherry Moore}, {Derek Murray}, {Chris Olah}, {Mike Schuster},
-  {Jonathon Shlens}, {Benoit Steiner}, {Ilya Sutskever}, {Kunal Talwar}, {Paul
-  Tucker}, {Vincent Vanhoucke}, {Vijay Vasudevan}, {Fernanda Viégas}, {Oriol
-  Vinyals}, {Pete Warden}, {Martin Wattenberg}, {Martin Wicke}, {Yuan Yu}, and
-  {Xiaoqiang Zheng}.
-\newblock {TensorFlow}: {Large}-{Scale} {Machine} {Learning} on {Heterogeneous}
-  {Systems}, 2015.
-
-\bibitem{paszke_pytorch_2019}
-Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory
-  Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban
-  Desmaison, Andreas Kopf, Edward Yang, Zachary DeVito, Martin Raison, Alykhan
-  Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu~Fang, Junjie Bai, and Soumith
-  Chintala.
-\newblock {PyTorch}: {An} {Imperative} {Style}, {High}-{Performance} {Deep}
-  {Learning} {Library}.
-\newblock In {\em Advances in {Neural} {Information} {Processing} {Systems}
-  32}, pages 8024--8035. Curran Associates, Inc., 2019.
 
 \bibitem{wang_towards_2022}
 Wen Wang, Jing Zhang, Yang Cao, Yongliang Shen, and Dacheng Tao.
